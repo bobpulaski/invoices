@@ -23,6 +23,7 @@
             <th>#ID</th>
             <th>#name</th>
             <th>#inn</th>
+            <th>#User_Id</th>
             <th>#action</th>
         </tr>
         </thead>
@@ -33,6 +34,7 @@
                     <td>{{ $el->id }}</td>
                     <td>{{ $el->name }}</td>
                     <td>{{ $el->inn }}</td>
+                    <td>{{ $el->user_id }}</td>
                     <td><a href="confirmation/{{ $el->id }}">Удалить</a></td>
                     <td><a href="{{ route('partners.edit' , [$el->id]) }}">Изменить</a></td>
                 </tr>

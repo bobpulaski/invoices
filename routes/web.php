@@ -31,6 +31,6 @@ Route::get('partners', function (){
 
 require __DIR__.'/auth.php';
 
-/*Route::resource('partners', PartnerController::class);*/
-Route::get('partners', 'App\Http\Controllers\PartnerController@index')
-    ->name('partners.index');
+Route::resource('partners', PartnerController::class)->middleware(['auth']);
+/*Route::get('partners', 'App\Http\Controllers\PartnerController@index')
+    ->name('partners.index');*/

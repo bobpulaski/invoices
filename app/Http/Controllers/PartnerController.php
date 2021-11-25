@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Partners;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class PartnerController extends Controller
 {
@@ -21,22 +23,35 @@ class PartnerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('partners.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'org' => 'required|max:255',
+            'inn' => 'required',
+        ]);
+
+        $Partner = new Partners;
+        $User = new User;
+
+        $Partner->user_id = Auth::id();
+        $Partner->name = $request->input('org');
+        $Partner->inn = $request->input('inn');
+        $Partner->save();
+        return redirect('partners')->with('success', 'Контрагент ' . $Partner->name. ' добавлен.');
+        //return back()->with('success', 'Контрагент добавлен.');
     }
 
     /**

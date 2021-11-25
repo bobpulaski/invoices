@@ -29,9 +29,9 @@
             <strong><a href="/">INVOICE</a></strong>
         </div>
         <div class="list-group list-group-flush">
-           {{-- <a class="list-group-item list-group-item-action list-group-item-light p-3" href={{ route('partners.index') }}>Контраганты</a>
+           <a class="list-group-item list-group-item-action list-group-item-light p-3" href={{ route('partners.index') }}>Контраганты</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href={{ route('partners.create') }}>Добавить контрагента</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href={{ route('invoices') }}>Счета</a>--}}
+            {{--<a class="list-group-item list-group-item-action list-group-item-light p-3" href={{ route('invoices') }}>Счета</a>--}}
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Моя организация</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Настройки</a>
         </div>
