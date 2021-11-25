@@ -28,8 +28,8 @@
         </tr>
         </thead>
         <tbody>
-        @if (!empty($Partner) && $Partner->count())
-            @foreach ($Partner as $el)
+        @if (!empty($partners) && $partners->count())
+            @foreach ($partners as $el)
                 <tr>
                     <td>{{ $el->id }}</td>
                     <td>{{ $el->name }}</td>
@@ -48,6 +48,6 @@
         </tbody>
     </table>
 
-    {{ $Partner->links() }} {{--Pagination--}}
+   {{ $partners->links() }} {{--Pagination--}}
 
 @endsection

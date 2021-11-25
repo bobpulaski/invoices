@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function partners()
+    {
+        return $this->belongsTo(Partners::class, 'user_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -42,8 +47,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function foo()
-    {
-        return $this->hasMany('App\Models\Partners', 'user_id');
-    }
+
 }

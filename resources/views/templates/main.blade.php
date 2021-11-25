@@ -42,7 +42,7 @@
 
         <div id="header" class="d-flex justify-content-end border-bottom bg-white p-3 shadow-sm p-3 bg-body">
             <div class="bd-highlight">
-                <a href="#">Выйти</a>
+                <a href="{{ route ('dashboard') }}">Выйти</a>
                 <a href="pdf/generate">PDF</a>
                 <x-button type="submit" style="info" message="Красная"/>
                 <x-button type="submit" style="success" message="Инфо"/>
