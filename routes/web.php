@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('partners', function (){
+    $id = Auth::id();
+    //$user = Auth::user('name');
+    return ($id);
+})/*->middleware(['auth'])->name('partners')*/;
+
+require __DIR__.'/auth.php';
