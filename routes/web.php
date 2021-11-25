@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PartnerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,7 @@ Route::get('partners', function (){
 })/*->middleware(['auth'])->name('partners')*/;
 
 require __DIR__.'/auth.php';
+
+/*Route::resource('partners', PartnerController::class);*/
+Route::get('partners', 'App\Http\Controllers\PartnerController@index')
+    ->name('partners.index');
