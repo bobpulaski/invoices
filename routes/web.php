@@ -23,14 +23,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('partners', function (){
+/*Route::get('partners', function (){
     $id = Auth::id();
     //$user = Auth::user('name');
     return ($id);
-})/*->middleware(['auth'])->name('partners')*/;
+})/*->middleware(['auth'])->name('partners')*/
 
 require __DIR__.'/auth.php';
 
 Route::resource('partners', PartnerController::class)->middleware(['auth']);
-/*Route::get('partners', 'App\Http\Controllers\PartnerController@index')
-    ->name('partners.index');*/

@@ -18,7 +18,7 @@ class PartnerController extends Controller
     {
         //$partners = Partners::simplePaginate (2)->partners();
 
-        $partners = User::find(Auth::id ())->partners()->simplePaginate(2);
+        $partners = User::find(Auth::id ())->partners()->simplePaginate(10);
         return view('partners.index', compact('partners'));
     }
 
@@ -40,16 +40,16 @@ class PartnerController extends Controller
      */
     public function store (Request $request)
     {
+
         $this->validate ($request, [
-            'org' => 'required|max:255',
+            'name' => 'required|max:255',
             'inn' => 'required',
         ]);
 
         $Partner = new Partners;
-        $User = new User;
 
         $Partner->user_id = Auth::id ();
-        $Partner->name = $request->input ('org');
+        $Partner->name = $request->input ('name');
         $Partner->inn = $request->input ('inn');
         $Partner->save ();
         return redirect ('partners')->with ('success', 'Контрагент ' . $Partner->name . ' добавлен.');
@@ -75,7 +75,8 @@ class PartnerController extends Controller
      */
     public function edit ($id)
     {
-        //
+        $currentRecord = Partners::where ('id', $id)->get();
+        return view ('partners.edit', compact ('currentRecord'));
     }
 
     /**
@@ -87,7 +88,14 @@ class PartnerController extends Controller
      */
     public function update (Request $request, $id)
     {
-        //
+        $Partner = Partners::find ($id);
+        if ($request->isMethod ('PUT'))
+        {
+            $Partner->name = $request->input('name');
+            $Partner->inn = $request->input('inn');
+            $Partner->save();
+        }
+        return redirect ('partners');
     }
 
     /**
@@ -98,6 +106,9 @@ class PartnerController extends Controller
      */
     public function destroy ($id)
     {
-        //
+        $Partner = Partners::find ($id);
+        //Partners::find($id)->delete();
+        Partners::destroy ($id);
+        return redirect('partners')->with('success', 'Контрагент ' . $Partner->name. ' удален.');
     }
 }
