@@ -16,8 +16,9 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        $Partner = Partners::simplePaginate(30);
-        return view('partners.index', compact('Partner'));
+        //$Partner = Partners::simplePaginate(30);
+        $bar = User::all()->foo;
+        return view('partners.index', compact('bar'));
     }
 
     /**
