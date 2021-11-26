@@ -1,6 +1,71 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <title>@yield('title') - Invocies</title>
+</head>
+<body>
+<div class="flex flex-row h-screen">
+
+    <div id="LeftSide" class="w-64 flex-shrink-0 bg-gray-700">
+        @include('templates.includes.leftside')
+    </div>
+
+    <div id="RightSide" class="flex flex-grow">
+
+        <div class="flex flex-grow flex-col justify-between">
+
+            {{--Header Area--}}
+            <div class="header">
+                @include('templates.includes.topheader')
+            </div>
+
+            {{--Main Content Area--}}
+            <div id="content" class="h-screen p-5 overflow-y-auto">
+                @yield('content')
+            </div>
+
+            <div id="footer" class="bg-yellow-200">
+                <p>© 2021 Invoice</p>
+            </div>
+
+        </div>
+
+    </div> <!-- RightSide -->
+
+
+    <!--<div class="flex flex-col flex-grow justify-between bg-red-800">
+
+        <div id="includes" class="bg-blue-200">
+            <p>Header</p>
+            <p>Header</p>
+            <p>Header</p>
+        </div>
+
+        <div id="content" class="flex-auto bg-yellow-200 overflow-y-auto">
+            <div class="">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste magni quidem tenetur. Assumenda consequatur cumque eos magnam nisi nobis omnis! Aperiam aut corporis deserunt eaque excepturi facere fugit ipsam nam natus porro reprehenderit sit temporibus, totam ut voluptate! Amet aperiam at autem beatae consequatur, cumque eaque ex id ipsa minima natus nobis non perferendis reprehenderit saepe voluptates voluptatum? Ad alias consequuntur dolore doloremque dolores eum harum illo minus nam nemo nesciunt perspiciatis placeat quibusdam ratione rem saepe, sed similique soluta sunt tempore tenetur totam unde. Ad dolorem eaque illo iste laudantium minima modi molestiae nam nisi quibusdam reprehenderit sit, vel.</p>
+            </div>
+        </div>
+
+        <div id="footer" class="bg-green-200">
+            <p>Footer</p>
+            <p>Footer</p>
+            <p>Footer</p>
+        </div>
+
+    </div>-->
+</div>
+</body>
+</html>
+
+{{--
+<!doctype html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -29,7 +94,9 @@
                href={{ route('partners.index') }}>Контраганты</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3"
                href={{ route('partners.create') }}>Добавить контрагента</a>
-            {{--<a class="list-group-item list-group-item-action list-group-item-light p-3" href={{ route('invoices') }}>Счета</a>--}}
+            --}}
+{{--<a class="list-group-item list-group-item-action list-group-item-light p-3" href={{ route('invoices') }}>Счета</a>--}}{{--
+
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Моя организация</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Настройки</a>
         </div>
@@ -38,7 +105,7 @@
 
     <div class="d-flex container flex-column min-vh-100 mw-100 p-0">
 
-        <div id="header" class="d-flex justify-content-end border-bottom bg-white p-3 shadow-sm p-3 bg-body">
+        <div id="includes" class="d-flex justify-content-end border-bottom bg-white p-3 shadow-sm p-3 bg-body">
             <div class="bd-highlight">
                 <div class="dropdown">
                     <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -54,10 +121,14 @@
                         </li>
                     </ul>
                 </div>
-                {{--<a href="{{ route ('dashboard') }}">Выйти</a>
-                <a href="pdf/generate">PDF</a>--}}
-                {{--<x-button type="submit" style="info" message="Красная"/>
-                <x-button type="submit" style="success" message="Инфо"/>--}}
+                --}}
+{{--<a href="{{ route ('dashboard') }}">Выйти</a>
+                <a href="pdf/generate">PDF</a>--}}{{--
+
+                --}}
+{{--<x-button type="submit" style="info" message="Красная"/>
+                <x-button type="submit" style="success" message="Инфо"/>--}}{{--
+
             </div>
         </div>
 
@@ -76,3 +147,4 @@
 
 </body>
 </html>
+--}}
