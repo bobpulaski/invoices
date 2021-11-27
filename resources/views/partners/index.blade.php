@@ -13,9 +13,10 @@
         <h1 class="font-semibold text-base text-blueGray-700">Контрагенты</h1>
     </div>
 
+
     @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
+        <div class="bg-green-700 p-3 mb-3 text-white">
+            <span class="font-medium">{{ session()->get('hisName') }}</span> {{ session()->get('success') }}
         </div>
     @endif
 
@@ -65,7 +66,7 @@
                         </a>
                     </td>
 
-                    <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2 >
+                    <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2" >
                         <form method="POST" action="{{ route('partners.destroy' , [$el->id]) }}">
                             @method('delete')
                             @csrf

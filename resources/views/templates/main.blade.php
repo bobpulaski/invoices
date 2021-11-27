@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>@yield('title') - Invocies</title>
@@ -28,8 +28,12 @@
                 @yield('content')
             </div>
 
-            <div id="footer" class="bg-yellow-200">
-                <p>© 2021 Invoice</p>
+            <div id="footer" class="flex justify-end p-3 border-t">
+                @if(isset($partners) and $partners != null)
+                    <div>
+                        <p class="text-xs text-gray-400">Записей {{ $partners->count() }} из {{ $total }}</p>
+                    </div>
+                @endif
             </div>
 
         </div>

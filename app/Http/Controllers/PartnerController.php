@@ -17,9 +17,9 @@ class PartnerController extends Controller
     public function index ()
     {
         //$partners = Partners::simplePaginate (2)->partners();
-
-        $partners = User::find(Auth::id ())->partners()->simplePaginate(10);
-        return view('partners.index', compact('partners'));
+        $total = User::find(Auth::id ())->partners()->count ();
+        $partners = User::find(Auth::id ())->partners()->simplePaginate(19);
+        return view('partners.index', compact('partners'))->with ('total', $total);
     }
 
     /**
@@ -52,8 +52,7 @@ class PartnerController extends Controller
         $Partner->name = $request->input ('name');
         $Partner->inn = $request->input ('inn');
         $Partner->save ();
-        return redirect ('partners')->with ('success', 'Контрагент ' . $Partner->name . ' добавлен.');
-        //return back()->with('success', 'Контрагент добавлен.');
+        return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'успешно создан.');
     }
 
     /**
@@ -109,6 +108,6 @@ class PartnerController extends Controller
         $Partner = Partners::find ($id);
         //Partners::find($id)->delete();
         Partners::destroy ($id);
-        return redirect('partners')->with('success', 'Контрагент ' . $Partner->name. ' удален.');
+        return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'удален.');
     }
 }
