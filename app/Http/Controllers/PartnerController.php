@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\Debugbar\Facade as DebugBar;
 use Illuminate\Http\Request;
 use App\Models\Partners;
 use App\Models\User;
@@ -19,6 +20,8 @@ class PartnerController extends Controller
         //$partners = Partners::simplePaginate (2)->partners();
         $total = User::find(Auth::id ())->partners()->count ();
         $partners = User::find(Auth::id ())->partners()->simplePaginate(19);
+        Debugbar::info($partners);
+        Debugbar::addMessage('Another message', 'mylabel');
         return view('partners.index', compact('partners'))->with ('total', $total);
     }
 
