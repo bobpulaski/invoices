@@ -18,3 +18,4 @@
         <a href={{ route('partners.create') }}>Добавить контрагента</a>
     </li>
 </ul>
+

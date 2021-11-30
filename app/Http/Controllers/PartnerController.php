@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Barryvdh\Debugbar\Facade as DebugBar;
 use Illuminate\Http\Request;
-use App\Models\Partners;
+use App\Models\Partner;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +17,7 @@ class PartnerController extends Controller
      */
     public function index ()
     {
-        //$partners = Partners::simplePaginate (2)->partners();
+        //$partners = Partner::simplePaginate (2)->partners();
         $total = User::find(Auth::id ())->partners()->count ();
         $partners = User::find(Auth::id ())->partners()->simplePaginate(19);
         Debugbar::info($partners);
@@ -43,19 +43,19 @@ class PartnerController extends Controller
      */
     public function store (Request $request)
     {
-
-        $this->validate ($request, [
-            'name' => 'required|max:255',
+        $validated = $request->validate([
+        /*$this->validate ($request, [*/
+            'name' => 'required', 'max:255',
             'inn' => 'required',
         ]);
 
-        $Partner = new Partners;
-
-        $Partner->user_id = Auth::id ();
-        $Partner->name = $request->input ('name');
-        $Partner->inn = $request->input ('inn');
-        $Partner->save ();
-        return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'успешно создан.');
+//        $Partner = new Partner;
+//        $Partner->user_id = Auth::id ();
+       /* $Partner->name = $request->input ('name');
+        $Partner->inn = $request->input ('inn');*/
+//        $Partner->save ();
+//        return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'успешно создан.');
+        ddd($validated);
     }
 
     /**
@@ -77,7 +77,7 @@ class PartnerController extends Controller
      */
     public function edit ($id)
     {
-        $currentRecord = Partners::where ('id', $id)->get();
+        $currentRecord = Partner::where ('id', $id)->get();
         return view ('partners.edit', compact ('currentRecord'));
     }
 
@@ -90,7 +90,7 @@ class PartnerController extends Controller
      */
     public function update (Request $request, $id)
     {
-        $Partner = Partners::find ($id);
+        $Partner = Partner::find ($id);
         if ($request->isMethod ('PUT'))
         {
             $Partner->name = $request->input('name');
@@ -108,9 +108,9 @@ class PartnerController extends Controller
      */
     public function destroy ($id)
     {
-        $Partner = Partners::find ($id);
-        //Partners::find($id)->delete();
-        Partners::destroy ($id);
+        $Partner = Partner::find ($id);
+        //Partner::find($id)->delete();
+        Partner::destroy ($id);
         return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'удален.');
     }
 }

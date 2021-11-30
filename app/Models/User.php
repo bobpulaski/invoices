@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     public function partners()
     {
-        return $this->hasMany(Partners::class, 'user_id');
+        return $this->hasMany(Partner::class, 'user_id');
     }
 
     /**
