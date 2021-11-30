@@ -14,7 +14,12 @@ class User extends Authenticatable
 
     public function partners()
     {
-        return $this->hasMany(Partner::class, 'user_id');
+        return $this->hasMany(Partner::class);
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
     }
 
     /**

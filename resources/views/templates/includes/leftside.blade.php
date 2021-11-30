@@ -15,7 +15,11 @@
     </li>
 
     <li class="h-16">
-        <a href={{ route('partners.create') }}>Добавить контрагента</a>
+        <a href={{ route('invoices.index') }}>Счета</a>
+    </li>
+
+    <li class="h-16">
+
     </li>
 </ul>
 

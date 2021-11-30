@@ -1,7 +1,7 @@
 @extends('templates.main')
 
 @php
-    $title = 'Контрагенты';
+    $title = 'Счета';
 @endphp
 
 @section('title')
@@ -9,7 +9,6 @@
 @endsection
 
 @section('content')
-
 
 
     @if(session()->has('success'))
@@ -20,10 +19,10 @@
 
     <div class="flex flex-row mt-3 mb-3">
         <div class="relative w-full mb-4 max-w-full flex-grow flex-1">
-            <h1 class="font-semibold text-base text-blueGray-700">Контрагенты</h1>
+            <h1 class="font-semibold text-base text-blueGray-700">{{ $title }}</h1>
         </div>
         <div class="bg-blue-500 hover:bg-blue-dark text-white font-light py-2 px-4 rounded">
-            <a href={{ route('partners.create') }}>+ Добавить</a>
+            <a href={{ route('invoices.create') }}>+ Добавить</a>
         </div>
     </div>
 
@@ -34,13 +33,13 @@
                 #ID
             </th>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #Name
-            </th>
-            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs whitespace-nowrap font-semibold text-left">
-                #Inn
+                #User_Id
             </th>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #User_Id
+                #Partner_Id
+            </th>
+            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
+                #Name
             </th>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
                 #Edit
@@ -51,20 +50,19 @@
         </tr>
         </thead>
         <tbody>
-        @if (!empty($partners) && $partners->count())
-            @foreach ($partners as $el)
+        @if (!empty($invoices))
+            @foreach ($invoices as $el)
                 <tr>
                     <td class="text-right border-b px-6 align-middle border-r border-l text-sm whitespace-nowrap p-2 ">{{ $el->id }}</td>
+                    <td class="border-b px-6 align-middle border-l-0 border-r text-sm whitespace-nowrap p-2 ">{{ $el->user_id }}</td>
+                    <td class="border-b px-6 align-middle border-l-0 border-r text-sm whitespace-nowrap p-2 ">{{ $el->partner_id }}</td>
                     <td class="border-b px-6 align-middle border-l-0 border-r text-sm whitespace-nowrap p-2 ">{{ $el->name }}</td>
-                    <td class="text-right border-b px-6 align-middle border-r text-sm whitespace-nowrap p-2 ">{{ $el->inn }}</td>
-                    <td class="text-right border-b px-6 align-middle border-r text-sm whitespace-nowrap p-2 ">{{ $el->user_id }}</td>
                     {{--<td><a href="confirmation/{{ $el->id }}">Удалить</a></td>--}}
 
                     <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2 ">
                         <a role="button" data-bs-toggle=""
-                           href="{{ route('partners.edit' , [$el->id]) }}">
-                            <svg class="text-right" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                 fill="currentColor"
+                           href="{{ route('invoices.edit' , [$el->id]) }}">
+                            <svg class="text-right" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
                                         d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
@@ -74,8 +72,8 @@
                         </a>
                     </td>
 
-                    <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2">
-                        <form method="POST" action="{{ route('partners.destroy' , [$el->id]) }}">
+                    <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2" >
+                        <form method="POST" action="{{ route('invoices.destroy' , [$el->id]) }}">
                             @method('delete')
                             @csrf
                             <button type="submit" class="btn btn-danger">
@@ -93,7 +91,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="10">There are no data.</td>
+                <td colspan="10">Записей нет. Добавьте счет.</td>
 
             </tr>
         @endif
@@ -102,7 +100,7 @@
 
     {{--Pagination--}}
     <div class="flex mt-3">
-        {{ $partners->links() }}
+        {{ $invoices->links() }}
     </div>
 
 @endsection

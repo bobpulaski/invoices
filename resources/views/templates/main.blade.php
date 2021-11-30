@@ -6,6 +6,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>@yield('title') - Invocies</title>
+    @livewireStyles
 </head>
 <body>
 <div class="flex flex-row h-screen">
@@ -63,6 +64,8 @@
 
     </div>-->
 </div>
+
+@livewireScripts
 </body>
 </html>
 

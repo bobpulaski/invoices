@@ -18,7 +18,7 @@ class PartnerController extends Controller
     public function index ()
     {
         //$partners = Partner::simplePaginate (2)->partners();
-        $total = User::find(Auth::id ())->partners()->count ();
+        $total = User::find(Auth::id ())->partners()->count();
         $partners = User::find(Auth::id ())->partners()->simplePaginate(19);
         Debugbar::info($partners);
         Debugbar::addMessage('Another message', 'mylabel');
@@ -49,13 +49,13 @@ class PartnerController extends Controller
             'inn' => 'required',
         ]);
 
-//        $Partner = new Partner;
-//        $Partner->user_id = Auth::id ();
-       /* $Partner->name = $request->input ('name');
-        $Partner->inn = $request->input ('inn');*/
-//        $Partner->save ();
-//        return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'успешно создан.');
-        ddd($validated);
+        $Partner = new Partner;
+        $Partner->user_id = Auth::id ();
+        $Partner->name = $request->input ('name');
+        $Partner->inn = $request->input ('inn');
+        $Partner->save ();
+        return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'успешно создан.');
+        //ddd($validated);
     }
 
     /**
