@@ -33,4 +33,4 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::resource('partners', PartnerController::class)->middleware(['auth']);
-Route::resource('invoices', InvoiceController::class);
+Route::resource('invoices', InvoiceController::class)->middleware(['auth']);;
