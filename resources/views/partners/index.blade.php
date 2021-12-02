@@ -20,7 +20,7 @@
 
     <div class="flex flex-row mt-3 mb-3">
         <div class="relative w-full mb-4 max-w-full flex-grow flex-1">
-            <h1 class="font-semibold text-base text-blueGray-700">Контрагенты</h1>
+            <h1 class="font-semibold text-3xl text-blueGray-700">Контрагенты</h1>
         </div>
         <div class="bg-blue-500 hover:bg-blue-dark text-white font-light py-2 px-4 rounded">
             <a href={{ route('partners.create') }}>+ Добавить</a>
@@ -94,8 +94,8 @@
                     </td>
 
                     <td>
-                        <div class="bg-blue-500 hover:bg-blue-dark text-white text-center font-light py-1 px-1 mt-2 mb-2 ml-2 w-40 rounded">
-                            <a href={{ route('invoices.create.for.partners', ['id' => $el->id]) }}>Add Invoice For This</a>
+                        <div class="">
+                            <a class="bg-blue-500 hover:bg-blue-dark text-white text-center font-light py-1 px-1 mt-2 mb-2 ml-2 w-40 rounded" href={{ route('invoices.create.for.partners', ['id' => $el->id]) }}>+</a>
                         </div>
                         {{--<a href="{{ route('invoices.edit' , [$el->id]) }}">Add Invoice For This</a>--}}
                     </td>

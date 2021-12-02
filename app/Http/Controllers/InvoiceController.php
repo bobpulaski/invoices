@@ -66,15 +66,16 @@ class InvoiceController extends Controller
     {
 
         $validated = $request->validate([
-            /*$this->validate ($request, [*/
             'name' => 'required', 'max:255',
         ]);
 
         $Invoice = new Invoice;
+
         $Invoice->user_id = Auth::id();
-        $Invoice->partner_id = session()->pull('partner_id');
+        $Invoice->partner_id = session()->pull('partner_id'); /* Извлекает из сессии с удалением */
         $Invoice->name = $request->input ('name');
         $Invoice->save ();
+
         return redirect ('invoices')->with ('hisName', $Invoice->name)->with ('success', 'успешно создан.');
     }
 
