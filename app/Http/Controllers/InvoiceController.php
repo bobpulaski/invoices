@@ -40,10 +40,21 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createForPartners($id)
     {
-        return view ('invoices.create');
+        $name = Partner::find($id)->where('user_id', 'LIKE', '%' . Auth::id() . '%')->find($id);
+        if (!$name) {
+            return 'Fuck Off';
+        } else {
+            session(['partner_id' => $id]);
+            return view('invoices.create', compact($name));
+        }
     }
+        public function create() {
+
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -53,19 +64,18 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             /*$this->validate ($request, [*/
             'name' => 'required', 'max:255',
         ]);
 
         $Invoice = new Invoice;
-        $Partner = new Partner;
         $Invoice->user_id = Auth::id();
-        $Invoice->partner_id = $request->input ('partner_id');
+        $Invoice->partner_id = session()->pull('partner_id');
         $Invoice->name = $request->input ('name');
         $Invoice->save ();
         return redirect ('invoices')->with ('hisName', $Invoice->name)->with ('success', 'успешно создан.');
-        //ddd($validated);
     }
 
     /**
@@ -88,7 +98,7 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

@@ -48,6 +48,9 @@
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
                 #Destroy
             </th>
+            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
+                #Invoice
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -88,6 +91,13 @@
                                 </svg>
                             </button>
                         </form>
+                    </td>
+
+                    <td>
+                        <div class="bg-blue-500 hover:bg-blue-dark text-white text-center font-light py-1 px-1 mt-2 mb-2 ml-2 w-40 rounded">
+                            <a href={{ route('invoices.create.for.partners', ['id' => $el->id]) }}>Add Invoice For This</a>
+                        </div>
+                        {{--<a href="{{ route('invoices.edit' , [$el->id]) }}">Add Invoice For This</a>--}}
                     </td>
                 </tr>
             @endforeach

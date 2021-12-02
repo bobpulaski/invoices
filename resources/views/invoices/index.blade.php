@@ -22,7 +22,7 @@
             <h1 class="font-semibold text-base text-blueGray-700">{{ $title }}</h1>
         </div>
         <div class="bg-blue-500 hover:bg-blue-dark text-white font-light py-2 px-4 rounded">
-            <a href={{ route('invoices.create') }}>+ Добавить</a>
+            {{--<a href={{ route('invoices.create') }}>+ Добавить</a>--}}
         </div>
     </div>
 
