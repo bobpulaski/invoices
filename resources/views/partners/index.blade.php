@@ -34,14 +34,15 @@
                 #ID
             </th>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
+                #User_Id
+            </th>
+            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
                 #Name
             </th>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs whitespace-nowrap font-semibold text-left">
                 #Inn
             </th>
-            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #User_Id
-            </th>
+
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
                 #Edit
             </th>
@@ -58,9 +59,10 @@
             @foreach ($partners as $el)
                 <tr>
                     <td class="text-right border-b px-6 align-middle border-r border-l text-sm whitespace-nowrap p-2 ">{{ $el->id }}</td>
+                    <td class="text-right border-b px-6 align-middle border-r text-sm whitespace-nowrap p-2 ">{{ $el->user_id }}</td>
                     <td class="border-b px-6 align-middle border-l-0 border-r text-sm whitespace-nowrap p-2 ">{{ $el->name }}</td>
                     <td class="text-right border-b px-6 align-middle border-r text-sm whitespace-nowrap p-2 ">{{ $el->inn }}</td>
-                    <td class="text-right border-b px-6 align-middle border-r text-sm whitespace-nowrap p-2 ">{{ $el->user_id }}</td>
+
                     {{--<td><a href="confirmation/{{ $el->id }}">Удалить</a></td>--}}
 
                     <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2 ">
