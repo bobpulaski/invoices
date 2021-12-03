@@ -95,7 +95,6 @@
 
                     <td>
                         <div class="">
-                            <a class="bg-blue-500 hover:bg-blue-dark text-white text-center font-light py-1 px-1 mt-2 mb-2 ml-2 w-40 rounded" href={{ route('invoices.create.for.partners', ['id' => $el->id]) }}>+</a>
                         </div>
                         {{--<a href="{{ route('invoices.edit' , [$el->id]) }}">Add Invoice For This</a>--}}
                     </td>
