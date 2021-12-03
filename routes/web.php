@@ -33,6 +33,10 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::resource('partners', PartnerController::class)->middleware(['auth']);
+
+Route::get('partners/{id}/confirmation', 'App\Http\Controllers\PartnerController@destroyConfirmation')
+    ->name('partners.delete.confirmation');
+
 //Route::resource('invoices', InvoiceController::class)->middleware(['auth']);
 Route::get('invoices', 'App\Http\Controllers\InvoiceController@index')
     ->middleware(['auth'])
