@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Partner;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PartnerController extends Controller
 {
@@ -17,11 +18,8 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        //$partners = Partner::simplePaginate (2)->partners();
         $total = User::find(Auth::id())->partners()->count();
         $partners = User::find(Auth::id())->partners()->simplePaginate(19);
-        Debugbar::info($partners);
-        Debugbar::addMessage('Another message', 'mylabel');
         return view('partners.index', compact('partners'))->with('total', $total);
     }
 
@@ -116,14 +114,20 @@ class PartnerController extends Controller
 
     public function destroy($id)
     {
+        $partner = Partner::find($id); /* Получаем id из URL */
+        ddd ($partner->id, $partner->name, $partner->user_id);
+        Partner::destroy($id);
+        return redirect('partners')->with('hisName', $partner->name)->with('success', 'удален.');
 
-        $Partner = Partner::find($id)->where('user_id', 'LIKE', '%' . Auth::id() . '%')->find($id);
-        if ($Partner === NULL or !$Partner) {
+        //ddd($id);
+        //$Partner = Partner::find($id)->where('user_id', Auth::id())->find($id);
+
+        /*if ($Partner === NULL or !$Partner) {
             return 'Fuck Off';
         } else {
             Partner::destroy($id);
             return redirect('partners')->with('hisName', $Partner->name)->with('success', 'удален.');
-        }
+        }*/
 
     }
 }
