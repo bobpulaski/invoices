@@ -43,6 +43,7 @@ class InvoiceController extends Controller
     public function createForPartners($id)
     {
         $name = Partner::find($id)->where('user_id', 'LIKE', '%' . Auth::id() . '%')->find($id);
+        ddd ($name);
         if (!$name) {
             return 'Fuck Off';
         } else {

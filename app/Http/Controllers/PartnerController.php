@@ -14,19 +14,20 @@ class PartnerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
         $total = User::find(Auth::id())->partners()->count();
         $partners = User::find(Auth::id())->partners()->simplePaginate(19);
+        //return View::make ('partners.index', compact ('partners'))->with ('total', $total);
         return view('partners.index', compact('partners'))->with('total', $total);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * //@return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
@@ -71,7 +72,7 @@ class PartnerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -84,7 +85,7 @@ class PartnerController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
@@ -100,8 +101,22 @@ class PartnerController extends Controller
 
     public function destroyConfirmation($id)
     {
-        //dd('confirmation');
-        return view('partners.deleteConfirmation')->with('id', $id);
+        //Проверяем на предмет ручной подстановки параметра в URL
+
+        if (Partner::find($id) == null) { // Есть такая запись в принципе в таблице Партнеров?
+            return response('Forbidden (not for this user)', 403);
+        } else {
+            $partner = Partner::find($id)->where('user_id', Auth::id())->find($id); //если есть, то проверяем этого ли пользователя
+        }
+
+        if ($partner == NULL) {
+            return response('Forbidden (not for this partner)', 403);
+        } else {
+            return view('partners.deleteConfirmation')->with('id', $id)->with ('name', Partner::find($id)->name);
+        }
+
+
+
     }
 
 
@@ -115,19 +130,22 @@ class PartnerController extends Controller
     public function destroy($id)
     {
         $partner = Partner::find($id); /* Получаем id из URL */
-        ddd ($partner->id, $partner->name, $partner->user_id);
-        Partner::destroy($id);
-        return redirect('partners')->with('hisName', $partner->name)->with('success', 'удален.');
+
+
+
+        //ddd ($partner->id, $partner->name, $partner->user_id);
+        //Partner::destroy($id);
+        //return redirect('partners')->with('hisName', $partner->name)->with('success', 'удален.');
 
         //ddd($id);
-        //$Partner = Partner::find($id)->where('user_id', Auth::id())->find($id);
+        $Partner = Partner::find($id)->where('user_id', Auth::id())->find($id);
 
-        /*if ($Partner === NULL or !$Partner) {
+        if ($Partner === NULL or !$Partner) {
             return 'Fuck Off';
         } else {
             Partner::destroy($id);
             return redirect('partners')->with('hisName', $Partner->name)->with('success', 'удален.');
-        }*/
+        }
 
     }
 }
