@@ -112,7 +112,8 @@ class PartnerController extends Controller
         if ($partner == NULL) {
             return response('Forbidden (not for this partner)', 403);
         } else {
-            return view('partners.deleteConfirmation')->with('id', $id)->with ('name', Partner::find($id)->name);
+            //return view('partners.deleteConfirmation')->with('id', $id)->with ('name', Partner::find($id)->name);
+
         }
 
 

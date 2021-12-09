@@ -19,11 +19,14 @@
     @endif
 
     <div class="flex flex-row mt-3 mb-3">
-        <div class="relative w-full mb-4 max-w-full flex-grow flex-1">
+        <div class="relative w-full max-w-full flex-grow flex-1">
             <h1 class="font-semibold text-3xl text-blueGray-700">Контрагенты</h1>
         </div>
-        <div class="bg-blue-500 hover:bg-blue-dark text-white font-light py-2 px-4 rounded">
-            <a href={{ route('partners.create') }}>+ Добавить</a>
+        <div class="flex flex-row bg-blue-500 hover:bg-blue-dark text-white font-light py-2 px-4 rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+            </svg>
+            <a class="ml-2 text-sm" href={{ route('partners.create') }}>Добавить контрагента</a>
         </div>
     </div>
 
@@ -44,14 +47,16 @@
             </th>
 
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
+                #Invoice
+            </th>
+
+            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
                 #Edit
             </th>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
                 #Destroy
             </th>
-            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #Invoice
-            </th>
+
         </tr>
         </thead>
         <tbody>
@@ -65,27 +70,48 @@
 
                     {{--<td><a href="confirmation/{{ $el->id }}">Удалить</a></td>--}}
 
-                    <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2 ">
-                        <a role="button" data-bs-toggle=""
-                           href="{{ route('partners.edit' , [$el->id]) }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                 fill="currentColor"
-                                 class="text-right bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path
-                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                    <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2">
+                        <a href="{{ route('invoices.create.for.partners' , [$el->id]) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                 fill="currentColor">
                                 <path fill-rule="evenodd"
-                                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                      d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z"
+                                      clip-rule="evenodd"/>
                             </svg>
                         </a>
                     </td>
 
                     <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2">
-                        <a href="{{ route('partners.delete.confirmation', [$el->id]) }}">Delete</a>
+                        <a role="button" data-bs-toggle=""
+                           href="{{ route('partners.edit' , [$el->id]) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 hover:text-green-700"
+                                 viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"/>
+                                <path fill-rule="evenodd"
+                                      d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                        </a>
                     </td>
 
-                    <td>
-                        <a href="{{ route('invoices.create.for.partners' , [$el->id]) }}">Add Invoice For This</a>
+                    <td id='wrapper' class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2">
+                        {{--<a href="{{ route('partners.delete.confirmation', [$el->id]) }}">Delete</a>--}}
+                        <?php
+                        $id = $el->id;
+                        $name = $el->name;
+                        ?>
+                        <a id="{{ $id }}" href="#ex1" rel="modal:open" class="jo">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-300 hover:text-red-700"
+                                 viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                      d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm1 8a1 1 0 100 2h6a1 1 0 100-2H7z"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                        </a>
                     </td>
+
+
                 </tr>
             @endforeach
         @else
@@ -100,5 +126,7 @@
     <div class="flex mt-3">
         {{ $partners->links() }}
     </div>
+
+    @include('partners.modal')
 
 @endsection
