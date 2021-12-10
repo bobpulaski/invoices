@@ -20,13 +20,14 @@
 
     <div class="flex flex-row mt-3 mb-3">
         <div class="relative w-full max-w-full flex-grow flex-1">
-            <h1 class="font-semibold text-3xl text-blueGray-700">Контрагенты</h1>
+            <h1 class="font-semibold text-3xl text-gray-700">Контрагенты</h1>
         </div>
-        <div class="flex flex-row bg-blue-500 hover:bg-blue-dark text-white font-light py-2 px-4 rounded">
+        <div class="flex flex-row bg-blue-500 hover:bg-blue-600 transition duration-150 ease-in text-white font-light py-2 px-4 rounded">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
             </svg>
-            <a class="ml-2 text-sm" href={{ route('partners.create') }}>Добавить контрагента</a>
+            <a class="ml-2 text-sm" href={{ route('partners.create') }}>Создать контрагента</a>
+            {{--TODO Палец на всю кнопку должен смотреть--}}
         </div>
     </div>
 
