@@ -12,10 +12,12 @@ class MyInputLabel extends Component
      * @return void
      */
     public $for;
+    public $req = false;
 
-    public function __construct($for)
+    public function __construct($for, $req)
     {
         $this->for = $for;
+        $this->req = $req;
     }
 
     /**
@@ -25,6 +27,13 @@ class MyInputLabel extends Component
      */
     public function render()
     {
-        return view('components.include.my-input-label');
+        if($this->req == 'true'){
+            $this->req = true;
+        }
+        else{
+            $this->req = false;
+        }
+
+        return view('components.include.my-input-label')->with ('req', $this->req);
     }
 }
