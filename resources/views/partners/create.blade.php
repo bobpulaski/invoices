@@ -18,7 +18,7 @@
 
         {{--Реквизиты--}}
         <div class="bg-gray-200 shadow-md rounded mb-6">
-            <h2 class="bg-gray-500 text-white p-3 text-2xl">Реквизиты</h2>
+            <h2 class="text-white p-3 text-2xl">Реквизиты</h2>
             <div class="grid grid-cols-6 gap-5 border p-6">
 
                 <div class="flex flex-col text-sm col-span-2">
