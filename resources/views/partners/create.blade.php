@@ -18,38 +18,37 @@
 
         {{--Реквизиты--}}
         <div class="bg-gray-200 shadow-md rounded mb-6">
-            <h2 class="text-white p-3 text-2xl">Реквизиты</h2>
+            <x-h3>Реквизиты</x-h3>
             <div class="grid grid-cols-6 gap-5 border p-6">
 
                 <div class="flex flex-col text-sm col-span-2">
 
-                    <x-my-input-label for="name" req="true">Полное наименование ЮЛ или ИП</x-my-input-label>
-                    <x-my-input name="name" id="name"
-                                placeholder="Общество с ограниченной ответственностью «Ромашка»"></x-my-input>
+                    <x-input-label for="name" req="true">Полное наименование ЮЛ или ИП</x-input-label>
+                    <x-input name="name" id="name"
+                             placeholder="Общество с ограниченной ответственностью «Ромашка»"></x-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
 
-                    <x-my-input-label for="sname" req="true">Краткое наименование</x-my-input-label>
-                    <x-my-input name="sname" id="sname" placeholder="ООО «Ромашка»"></x-my-input>
+                    <x-input-label for="sname" req="true">Краткое наименование</x-input-label>
+                    <x-input name="sname" id="sname" placeholder="ООО «Ромашка»"></x-input>
 
                 </div>
 
                 <div class="flex flex-col text-sm">
 
-                    <x-my-input-label for="ogrn" req="false">ОГРН</x-my-input-label>
-                    <x-my-input name="ogrn" id="ogrn"
-                                placeholder="1027739609391"></x-my-input>
+                    <x-input-label for="ogrn" req="false">ОГРН</x-input-label>
+                    <x-input name="ogrn" id="ogrn" placeholder="1027739609391"></x-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-my-input-label for="inn" req="true">ИНН</x-my-input-label>
-                    <x-my-input name="inn" id="inn" placeholder="7734126105"></x-my-input>
+                    <x-input-label for="inn" req="true">ИНН</x-input-label>
+                    <x-input name="inn" id="inn" placeholder="7734126105"></x-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-my-input-label for="kpp" req="false">КПП</x-my-input-label>
-                    <x-my-input name="kpp" id="kpp" placeholder="773401001"></x-my-input>
+                    <x-input-label for="kpp" req="false">КПП</x-input-label>
+                    <x-input name="kpp" id="kpp" placeholder="773401001"></x-input>
                 </div>
 
             </div>
@@ -57,81 +56,88 @@
 
         {{--Контактная информация--}}
         <div class="bg-gray-200 shadow-md rounded mb-6">
-            <h2 class="bg-gray-500 text-white p-3 text-2xl">Контактная информация</h2>
+            <x-h3>Контактная информация</x-h3>
 
             <div class="grid grid-cols-7 gap-5 border p-6">
 
                 <div class="flex flex-col col-span-2 text-sm">
-                    <x-my-input-label for="adr" req="false">Адрес</x-my-input-label>
-                    <x-my-input name="adr" id="adr"
-                                placeholder="119049 г. Москва, ул. Донская, д. 8 стр. 1"></x-my-input>
+                    <x-input-label for="adr" req="false">Адрес</x-input-label>
+                    <x-input name="adr" id="adr"
+                             placeholder="119049 г. Москва, ул. Донская, д. 8 стр. 1"></x-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-my-input-label for="position" req="false">Должность руководителя</x-my-input-label>
-                    <x-my-input name="position" id="position"
-                                placeholder="Генеральный директор"></x-my-input>
+                    <x-input-label for="position" req="false">Должность руководителя</x-input-label>
+                    <x-input name="position" id="position"
+                             placeholder="Генеральный директор"></x-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-my-input-label for="fio" req="false">ФИО</x-my-input-label>
-                    <x-my-input name="fio" id="fio"
-                                placeholder="Иванов А.И."></x-my-input>
+                    <x-input-label for="fio" req="false">ФИО</x-input-label>
+                    <x-input name="fio" id="fio"
+                             placeholder="Иванов А.И."></x-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-my-input-label for="phone" req="phone">Телефон</x-my-input-label>
-                    <x-my-input name="phone" id="phone"
-                                placeholder="+7-909-12-32-12"></x-my-input>
+                    <x-input-label for="phone" req="phone">Телефон</x-input-label>
+                    <x-input name="phone" id="phone"
+                             placeholder="+7-909-12-32-12"></x-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-my-input-label for="email" req="email">Email</x-my-input-label>
-                    <x-my-input name="email" id="email"
-                                placeholder="name@sitename.ru"></x-my-input>
+                    <x-input-label for="email" req="email">Email</x-input-label>
+                    <x-input name="email" id="email"
+                             placeholder="name@sitename.ru"></x-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-my-input-label for="www" req="www">Сайт</x-my-input-label>
-                    <x-my-input name="www" id="www"
-                                placeholder="sitename.ru"></x-my-input>
+                    <x-input-label for="www" req="www">Сайт</x-input-label>
+                    <x-input name="www" id="www"
+                             placeholder="sitename.ru"></x-input>
                 </div>
 
             </div>
         </div>
 
-        {{--Банковские реквизиты>--}}
+        {{--Банковские реквизиты--}}
         <div class="bg-gray-200 shadow-md rounded mb-6">
-            <h2 class="bg-gray-500 text-white p-3 text-2xl">Банковские реквизиты</h2>
+            <x-h3>Банковские реквизиты</x-h3>
 
             <div class="grid grid-cols-7 gap-5 border p-6">
 
                 <div class="flex flex-col col-span-2 text-sm">
-                    <x-my-input-label for="bankname" req="true">Наименование банка"</x-my-input-label>
-                    <x-my-input name="bankname" id="bankname"
-                                placeholder="ПАО банк «ФК открытие»"></x-my-input>
+                    <x-input-label for="bankname" req="true">Наименование банка"</x-input-label>
+                    <x-input name="bankname" id="bankname"
+                             placeholder="ПАО банк «ФК Открытие»"></x-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-my-input-label for="bik" req="true">БИК</x-my-input-label>
-                    <x-my-input name="bik" id="bik"
-                                placeholder="044525297"></x-my-input>
+                    <x-input-label for="bik" req="true">БИК</x-input-label>
+                    <x-input name="bik" id="bik"
+                             placeholder="044525297"></x-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-my-input-label for="bankaccount" req="true">Счет №</x-my-input-label>
-                    <x-my-input name="bankaccount" id="bankaccount"
-                                placeholder="30101810945250000297"></x-my-input>
+                    <x-input-label for="bankaccount" req="true">Счет №</x-input-label>
+                    <x-input name="bankaccount" id="bankaccount"
+                             placeholder="30101810945250000297"></x-input>
                 </div>
 
-
+                <div class="flex flex-col col-span-3 text-sm">
+                    <x-input-label for="information" req="false">Дополнительная информация</x-input-label>
+                    <x-input name="information" id="information"
+                             placeholder="..."></x-input>
+                </div>
 
             </div>
         </div>
 
+        {{--Кнопки--}}
 
-        <div>
-            <button type="submit" class="">Добавить</button>
+
+        <div class="grid grid-cols-6 gap-3">
+            <x-simple-button type="submit" bg="bg-green-700" hover="bg-green-900">Сохранить</x-simple-button>
+            <x-link-button href="{{ route('partners.index') }}" type="secondary">Отмена</x-link-button>
         </div>
 
         {{--</div>--}}

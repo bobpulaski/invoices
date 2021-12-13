@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class MyInputLabel extends Component
+class InputLabel extends Component
 {
     /**
      * Create a new component instance.
@@ -27,13 +27,13 @@ class MyInputLabel extends Component
      */
     public function render()
     {
-        if($this->req == 'true'){
+        if($this->req == 'true') {
             $this->req = true;
         }
-        else{
+        else {
             $this->req = false;
         }
 
-        return view('components.include.my-input-label')->with ('req', $this->req);
+        return view('components.inputs.input-label')->with ('req', $this->req);
     }
 }

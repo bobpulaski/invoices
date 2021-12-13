@@ -32139,7 +32139,10 @@ select {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  //background-color: #ccc;
+}
+
+.bg-steelblue {
+  background-color: #4682B4;
 }
 
 @media (min-width: 640px) {

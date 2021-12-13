@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class MyInput extends Component
+class SimpleButton extends Component
 {
     /**
      * Create a new component instance.
@@ -12,15 +12,15 @@ class MyInput extends Component
      * @return void
      */
 
-    public $name;
-    public $id;
-    public $placeholder;
+    public $type;
+    public $bg;
+    public $hover;
 
-    public function __construct($name, $id, $placeholder)
+    public function __construct($type, $bg, $hover)
     {
-        $this->name = $name;
-        $this->id = $id;
-        $this->placeholder = $placeholder;
+        $this->type = $type;
+        $this->bg = $bg;
+        $this->hover = $hover;
     }
 
     /**
@@ -30,6 +30,6 @@ class MyInput extends Component
      */
     public function render()
     {
-        return view('components.include.my-input');
+        return view('components.buttons.simple-button');
     }
 }
