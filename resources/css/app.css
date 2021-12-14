@@ -5,3 +5,7 @@
 body {
     font-family: 'Open Sans', sans-serif;
 }
+
+.modal {
+    max-width: 75% !important;
+}

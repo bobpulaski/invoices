@@ -1,7 +1,7 @@
 @extends('templates.main')
 
 @php
-    $title = 'Счета';
+    $title = 'Счета на оплату';
 @endphp
 
 @section('title')
@@ -19,10 +19,11 @@
 
     <div class="flex flex-row mt-3 mb-3">
         <div class="relative w-full mb-4 max-w-full flex-grow flex-1">
-            <h1 class="font-semibold text-base text-blueGray-700">{{ $title }}</h1>
+            <x-h1>{{ $title }}</x-h1>
         </div>
         <div class="bg-blue-500 hover:bg-blue-dark text-white font-light py-2 px-4 rounded">
-            {{--<a href={{ route('invoices.create') }}>+ Добавить</a>--}}
+            <a href={{ route('invoices.create') }}>+ Добавить</a>
+            {{--<a href={{ route('invoices.create.for.partners', [$el->user_id]) }}>+ Добавить</a>--}}
         </div>
     </div>
 
@@ -30,16 +31,19 @@
         <thead class="bg-gray-200">
         <tr>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #ID
+                #invoices.id
             </th>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #User_Id
+                #invoices.name
             </th>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #Partner_Id
+                #invoices.partner_id
             </th>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #Name
+                #invoices.user_id
+            </th>
+            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
+                #partners.name
             </th>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
                 #Edit
@@ -54,16 +58,15 @@
             @foreach ($invoices as $el)
                 <tr>
                     <td class="text-right border-b px-6 align-middle border-r border-l text-sm whitespace-nowrap p-2 ">{{ $el->id }}</td>
-                    <td class="border-b px-6 align-middle border-l-0 border-r text-sm whitespace-nowrap p-2 ">{{ $el->user_id }}</td>
-                    <td class="border-b px-6 align-middle border-l-0 border-r text-sm whitespace-nowrap p-2 ">{{ $el->partner_id }}</td>
                     <td class="border-b px-6 align-middle border-l-0 border-r text-sm whitespace-nowrap p-2 ">{{ $el->name }}</td>
-                    {{--<td><a href="confirmation/{{ $el->id }}">Удалить</a></td>--}}
+                    <td class="border-b px-6 align-middle border-l-0 border-r text-sm whitespace-nowrap p-2 ">{{ $el->partner_id }}</td>
+                    <td class="border-b px-6 align-middle border-l-0 border-r text-sm whitespace-nowrap p-2 ">{{ $el->user_id }}</td>
+                    <td class="border-b px-6 align-middle border-l-0 border-r text-sm whitespace-nowrap p-2 ">{{ $el->partners_name }}</td>
 
                     <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2 ">
                         <a role="button" data-bs-toggle=""
                            href="{{ route('invoices.edit' , [$el->id]) }}">
-                            <svg class="text-right" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <svg class="text-right bi bi-pencil-square" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor">
                                 <path
                                         d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
                                 <path fill-rule="evenodd"

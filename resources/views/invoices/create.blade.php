@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    <div >
+    <div>
         <form class="row mt-5" action="{{ route('invoices.store') }}" method="post">
             @csrf
             @method('POST')
@@ -21,7 +21,8 @@
                 <div id="Help" class="form-text">Например, ООО «Ромашка»</div>
             </div>
             <div>
-                @livewire('search')
+                {{--@livewire('search')--}}
+
             </div>
 
             <div class="mb-3 col-12">

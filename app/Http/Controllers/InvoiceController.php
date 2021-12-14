@@ -8,6 +8,7 @@ use App\Models\User;
 use Barryvdh\Debugbar\Facade as DebugBar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
@@ -23,7 +24,22 @@ class InvoiceController extends Controller
         //$invoices = $partners->invoices()->get();
 
         //$total = User::find(Auth::id ())->invoices()->count();
-        $invoices = User::find(Auth::id ())->invoices()->simplePaginate(19);
+
+            //$invoices = User::find(Auth::id ())->invoices();
+
+            //->simplePaginate(19);
+        $invoices = DB::table('invoices')
+            ->select('invoices.id', 'invoices.name', 'invoices.partner_id', 'invoices.user_id', 'partners.name AS partners_name')
+            ->leftJoin('partners', 'invoices.partner_id', '=', 'partners.id')
+            ->where('invoices.user_id', '=', Auth::id ())
+            ->simplePaginate(19);
+
+       /* $jopa = Invoice::with(['partners'])
+            ->where('user_id', Auth::id ())
+            ->get(['invoices.id', 'invoices.name', 'invoices.partner_id', 'invoices.user_id']);*/
+
+       // ddd($jopa);
+
 
         //$total = User::find(Auth::id ())->partners()->count ();
         //$invoices = Partner::all()->invoices()->simplePaginate(19);
@@ -43,7 +59,7 @@ class InvoiceController extends Controller
     public function createForPartners($id)
     {
         $name = Partner::find($id)->where('user_id', 'LIKE', '%' . Auth::id() . '%')->find($id);
-        ddd ($name);
+        //ddd ($name);
         if (!$name) {
             return 'Fuck Off';
         } else {

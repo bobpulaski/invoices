@@ -42,8 +42,9 @@ class PartnerController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $validated = $request->validate([
-            /*$this->validate ($request, [*/
             'name' => 'required', 'max:255',
             'inn' => 'required',
         ]);
@@ -54,7 +55,6 @@ class PartnerController extends Controller
         $Partner->inn = $request->input('inn');
         $Partner->save();
         return redirect('partners')->with('hisName', $Partner->name)->with('success', 'успешно создан.');
-        //ddd($validated);
     }
 
     /**

@@ -32141,8 +32141,8 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-.bg-steelblue {
-  background-color: #4682B4;
+.modal {
+  max-width: 75% !important;
 }
 
 @media (min-width: 640px) {
