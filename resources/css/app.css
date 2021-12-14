@@ -6,6 +6,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.modal {
+/*.modal {
+    width: inherit !important;
     max-width: 75% !important;
-}
+}*/

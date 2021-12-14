@@ -103,13 +103,14 @@
                         $id = $el->id;
                         $name = $el->name;
                         ?>
-                        <a id="{{ $id }}" href="#ex1" rel="modal:open" class="jo">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-300 hover:text-red-700"
+                        <a id="{{ $id }}" href="#ex1" rel="modal:open" class="jo" data-name="{{ $name }}">
+                            Удалить {{$id}} {{ $name }}
+                           {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-300 hover:text-red-700"
                                  viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd"
                                       d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm1 8a1 1 0 100 2h6a1 1 0 100-2H7z"
                                       clip-rule="evenodd"/>
-                            </svg>
+                            </svg>--}}
                         </a>
                     </td>
 
@@ -130,11 +131,34 @@
     </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    {{--<form id="data" action="{{ route ('partners.index.pagination', $rows) }}" method="GET">
+        @method('GET')--}}
+        <select name="myselect" id="myselect">
+            <option value="2">2</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+        </select>
 
+    <a id="paginate" href="">Применить</a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
+    <link rel="stylesheet" href="{{ asset ('css/jquery.modal.css') }}"/>
+
+    <script>
+        $(document).ready(function () {
+            $('#myselect').find(option[1, '45']);
+        });
+
+
+        $('#paginate').click(function () {
+            //alert($('#myselect').val())
+            $('#paginate').attr('href', '');
+            $('#paginate').attr('href', '/../partners/paginate/' + $('#myselect').val());
+        });
+    </script>
 
 
     @include('partners.createModal')

@@ -32,7 +32,7 @@ class InvoiceController extends Controller
             ->select('invoices.id', 'invoices.name', 'invoices.partner_id', 'invoices.user_id', 'partners.name AS partners_name')
             ->leftJoin('partners', 'invoices.partner_id', '=', 'partners.id')
             ->where('invoices.user_id', '=', Auth::id ())
-            ->simplePaginate(19);
+            ->simplePaginate(3);
 
        /* $jopa = Invoice::with(['partners'])
             ->where('user_id', Auth::id ())

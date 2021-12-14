@@ -37,6 +37,9 @@ Route::resource('partners', PartnerController::class)->middleware(['auth']);
 Route::get('partners/{id}/confirmation', 'App\Http\Controllers\PartnerController@destroyConfirmation')
     ->name('partners.delete.confirmation');
 
+Route::get('partners/paginate/{rows}', 'App\Http\Controllers\PartnerController@indexWithPaginate')
+    ->name('partners.index.pagination');
+
 //Route::resource('invoices', InvoiceController::class)->middleware(['auth']);
 Route::get('invoices', 'App\Http\Controllers\InvoiceController@index')
     ->middleware(['auth'])

@@ -19,9 +19,17 @@ class PartnerController extends Controller
     public function index()
     {
         $total = User::find(Auth::id())->partners()->count();
-        $partners = User::find(Auth::id())->partners()->simplePaginate(12);
+        $partners = User::find(Auth::id())->partners()->simplePaginate(2);
         //return View::make ('partners.index', compact ('partners'))->with ('total', $total);
         return view('partners.index', compact('partners'))->with('total', $total);
+    }
+
+
+    public function indexWithPaginate($rows)
+    {
+        $total = User::find(Auth::id())->partners()->count();
+        $partners = User::find(Auth::id())->partners()->simplePaginate($rows);
+        return view('partners.index', compact('partners'))->with('total', $total)->with ('rows', $rows);
     }
 
     /**

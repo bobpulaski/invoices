@@ -32141,9 +32141,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-.modal {
-  max-width: 75% !important;
-}
+/*.modal {
+    width: inherit !important;
+    max-width: 75% !important;
+}*/
 
 @media (min-width: 640px) {
   .sm\:container {
