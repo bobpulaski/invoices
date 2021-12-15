@@ -22,9 +22,11 @@
         <div class="relative w-full max-w-full flex-grow flex-1">
             <x-h1>{{ $title }}</x-h1>
         </div>
-        <div class="flex flex-row bg-blue-500 hover:bg-blue-600 transition duration-150 ease-in text-white font-light py-2 px-4 rounded">
+        <div
+            class="flex flex-row bg-blue-500 hover:bg-blue-600 transition duration-150 ease-in text-white font-light py-2 px-4 rounded">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+                <path
+                    d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
             </svg>
             {{--<a class="ml-2 text-sm" href={{ route('partners.create') }}>Создать контрагента</a>--}}
             <a href="#ex2" rel="modal:open" class="ml-2 text-sm">Создать контрагента</a>
@@ -73,7 +75,8 @@
                     {{--<td><a href="confirmation/{{ $el->id }}">Удалить</a></td>--}}
 
                     <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2">
-                        <a href="{{ route('invoices.create.for.partners' , [$el->id]) }}" title="Добавить счет этому контрагенту">
+                        <a href="{{ route('invoices.create.for.partners' , [$el->id]) }}"
+                           title="Добавить счет этому контрагенту">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                  fill="currentColor">
                                 <path fill-rule="evenodd"
@@ -105,12 +108,12 @@
                         ?>
                         <a id="{{ $id }}" href="#ex1" rel="modal:open" class="jo" data-name="{{ $name }}">
                             Удалить {{$id}} {{ $name }}
-                           {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-300 hover:text-red-700"
-                                 viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                      d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm1 8a1 1 0 100 2h6a1 1 0 100-2H7z"
-                                      clip-rule="evenodd"/>
-                            </svg>--}}
+                            {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-300 hover:text-red-700"
+                                  viewBox="0 0 20 20" fill="currentColor">
+                                 <path fill-rule="evenodd"
+                                       d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm1 8a1 1 0 100 2h6a1 1 0 100-2H7z"
+                                       clip-rule="evenodd"/>
+                             </svg>--}}
                         </a>
                     </td>
 
@@ -130,33 +133,38 @@
         {{ $partners->links() }}
     </div>
 
-
-    {{--<form id="data" action="{{ route ('partners.index.pagination', $rows) }}" method="GET">
-        @method('GET')--}}
-        <select name="myselect" id="myselect">
-            <option value="2">2</option>
+    <form id="paginate" action="{{ route('partners.perpage') }}" method="get">
+        <label for="rows">Записей на страницу</label>
+        <select name="rows" id="rows" onchange="this.form.submit()">
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
         </select>
+    </form>
 
-    <a id="paginate" href="">Применить</a>
+    <a id="_paginate" href="">Применить</a>
+
+    {{ $rows }}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="{{ asset ('css/jquery.modal.css') }}"/>
 
+
     <script>
         $(document).ready(function () {
-            $('#myselect').find(option[1, '45']);
+            document.getElementById('rows').value = {{ $rows }};
         });
+    </script>
 
-
-        $('#paginate').click(function () {
+    <script>
+        /*$('#paginate').click(function () {*/
+        $('#myselect').change(function () {
             //alert($('#myselect').val())
-            $('#paginate').attr('href', '');
-            $('#paginate').attr('href', '/../partners/paginate/' + $('#myselect').val());
+           /* $('#paginate').attr('action', '');
+            $('#paginate').attr('action', 'partners/perpage/' + $('#myselect').val());*/
+
         });
     </script>
 
