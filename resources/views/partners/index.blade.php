@@ -23,10 +23,10 @@
             <x-h1>{{ $title }}</x-h1>
         </div>
         <div
-            class="flex flex-row bg-blue-500 hover:bg-blue-600 transition duration-150 ease-in text-white font-light py-2 px-4 rounded">
+                class="flex flex-row bg-blue-500 hover:bg-blue-600 transition duration-150 ease-in text-white font-light py-2 px-4 rounded">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path
-                    d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
+                        d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
             </svg>
             {{--<a class="ml-2 text-sm" href={{ route('partners.create') }}>Создать контрагента</a>--}}
             <a href="#ex2" rel="modal:open" class="ml-2 text-sm">Создать контрагента</a>
@@ -92,7 +92,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 hover:text-green-700"
                                  viewBox="0 0 20 20" fill="currentColor">
                                 <path
-                                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"/>
+                                        d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"/>
                                 <path fill-rule="evenodd"
                                       d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
                                       clip-rule="evenodd"/>
@@ -129,48 +129,35 @@
     </table>
 
     {{--Pagination--}}
-    <div class="flex mt-3">
-        {{ $partners->links() }}
+    <div class="flex justify-end pb-3 mt-5">
+        <div>{{ $partners->links() }}</div>
+
+        <form id="paginate" action="{{ route('partners.index') }}" method="get">
+            <label for="rows" class="ml-3 mr-3">Записей на страницу</label>
+            <select name="rows" id="rows" onchange="this.form.submit()">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+        </form>
     </div>
 
-    <form id="paginate" action="{{ route('partners.perpage') }}" method="get">
-        <label for="rows">Записей на страницу</label>
-        <select name="rows" id="rows" onchange="this.form.submit()">
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-        </select>
-    </form>
 
-    <a id="_paginate" href="">Применить</a>
-
-    {{ $rows }}
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <!-- jQuery Modal -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="{{ asset ('css/jquery.modal.css') }}"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <!-- jQuery Modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="{{ asset ('css/jquery.modal.css') }}"/>
 
 
-    <script>
-        $(document).ready(function () {
-            document.getElementById('rows').value = {{ $rows }};
-        });
-    </script>
+        <script>
+            $(document).ready(function () {
+                document.getElementById('rows').value = {{ $rows }};
+            });
+        </script>
 
-    <script>
-        /*$('#paginate').click(function () {*/
-        $('#myselect').change(function () {
-            //alert($('#myselect').val())
-           /* $('#paginate').attr('action', '');
-            $('#paginate').attr('action', 'partners/perpage/' + $('#myselect').val());*/
-
-        });
-    </script>
-
-
+    <h3>{{$rows}}</h3>
     @include('partners.createModal')
-    @include('partners.deleteModal')
+    {{--@include('partners.deleteModal')--}}
 
 
 @endsection

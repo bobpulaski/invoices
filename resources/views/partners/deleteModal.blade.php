@@ -17,12 +17,12 @@
             <p class="py-4 text-sm text-gray-700">Вы уверены, что хотите удалить контрагента <span class="font-bold">{{ $name }}</span>? При удалении вы потеряете все связанные записи с ним. Это действие нельзя отменить.</p>
         </div>
 
-        <div class="flex pb-3 space-x-4">
-            <form class="form-destroy" method="POST" action="">
+        <div >
+            <form class="form-destroy " method="POST" action="">
                 @method('delete')
                 @csrf
 
-                <div class="flex">
+                <div class="flex justify-end pb-3 space-x-5">
                     <a href="#" rel="modal:close"
                        class="bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded mt-3">Отмена</a>
                     <button type="submit" class="bg-red-300 hover:bg-red-800 text-white py-2 px-4 rounded mt-3 ml-3">Удалить</button>
