@@ -12,11 +12,11 @@
 
 
 
-{{--    @if(session()->has('success'))
+    @if(session()->has('success'))
         <div class="bg-green-700 p-3 mb-3 text-white">
             <span class="font-medium">{{ session()->get('hisName') }}</span> {{ session()->get('success') }}
         </div>
-    @endif--}}
+    @endif
 
     <div class="flex flex-row mt-3 mb-3">
         <div class="relative w-full max-w-full flex-grow flex-1">
@@ -67,10 +67,10 @@
         @if (!empty($partners) && $partners->count())
             @foreach ($partners as $el)
                 <tr>
-                    <td class="text-right border-b px-6 align-middle border-r border-l text-sm whitespace-nowrap p-2 ">{{ $el->id }}</td>
-                    <td class="text-right border-b px-6 align-middle border-r text-sm whitespace-nowrap p-2 ">{{ $el->user_id }}</td>
-                    <td class="border-b px-6 align-middle border-l-0 border-r text-sm whitespace-nowrap p-2 ">{{ $el->name }}</td>
-                    <td class="text-right border-b px-6 align-middle border-r text-sm whitespace-nowrap p-2 ">{{ $el->inn }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r border-l text-xs whitespace-nowrap p-1">{{ $el->id }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->user_id }}</td>
+                    <td class="border-b px-1 align-middle border-l-0 border-r text-xs whitespace-nowrap p-1">{{ $el->name }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->inn }}</td>
 
                     {{--<td><a href="confirmation/{{ $el->id }}">Удалить</a></td>--}}
 
@@ -106,7 +106,7 @@
                         $id = $el->id;
                         $name = $el->name;
                         ?>
-                        <a id="{{ $id }}" href="#ex1" rel="modal:open" class="jo" data-name="{{ $name }}">
+                        <a id="{{ $id }}" href="#ex1" rel="modal:open" class="jo" data-name="{{ $name }}" title="Удалить {{ $el->name }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-300 hover:text-red-700"
                                  viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd"
@@ -131,7 +131,6 @@
     <div class="flex justify-end pb-3 mt-5 justify-between">
         <div>{{ $partners->links() }}</div>
         <x-partners-perpage/>
-
     </div>
 
 
@@ -143,7 +142,7 @@
 
     <script>
         $(document).ready(function () {
-            document.getElementById('rows').value = {{ $rows }};
+            document.getElementById('rows').value = {{ $session_rows }};
         });
     </script>
 

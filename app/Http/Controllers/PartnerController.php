@@ -19,39 +19,40 @@ class PartnerController extends Controller
     public function index (Request $request)
 
     {
-
         $rows = request('rows');
 
-
-        if (!session('rows') and !$rows) {
-            $rows = 10;
-            session()->put('rows', 10);
-
-            Debugbar::info($rows);
-            Debugbar::info('if (!session(\'rows\') and !$rows)');
-            //dd('if (!session(\'rows\') and !$rows)');
-        }
-
-        if (!$rows) {
-            Debugbar::info($rows);
-            $rows = session('rows');
+        if (!$rows AND !session('sessiont_rows')) {
+            session()->put('sessiont_rows', 15);            //Присваеваем значение по-умолчанию
         }
 
 
-        if (!session('rows')) {
-            session(['rows' => $rows]);
+        if (!$rows AND session('sessiont_rows')) {
+            session()->put('sessiont_rows', session('sessiont_rows'));  //Если пользователь сделал выбор, то сохраняем в сессию
         }
 
-        if ($rows) {
-            session(['rows' => $rows]); //Передаем в сессию количество записей на страницу
+        if ($rows == 15) {
+            session()->put('sessiont_rows', 15);
+        }
+
+        if ($rows == 25) {
+            session()->put('sessiont_rows', 25);
+        }
+
+        if ($rows == 50) {
+            session()->put('sessiont_rows', 50);
         }
 
 
+        //*****************************//
+            Debugbar::warning('$rows = '. $rows . '. Сессия = ' . session('sessiont_rows') . '. Итоговое состояние (4 правило).'); //4
+        //********************************//
 
         $total = User::find (Auth::id ())->partners ()->count ();
-        $partners = User::find (Auth::id ())->partners ()->Paginate (session('rows'));
+        $partners = User::find (Auth::id ())->partners ()->Paginate (session('sessiont_rows'));
         //return View::make ('partners.index', compact ('partners'))->with ('total', $total);
-        return view ('partners.index', compact ('partners'))->with ('total', $total)->with ('rows', session('rows'));
+        return view ('partners.index', compact ('partners'))
+            ->with ('total', $total)
+            ->with ('session_rows', session('sessiont_rows'));
     }
 
 
@@ -94,7 +95,11 @@ class PartnerController extends Controller
         $Partner->name = $request->input ('name');
         $Partner->inn = $request->input ('inn');
         $Partner->save ();
-        session(['rows' => $rows]);
+
+        $rows = session('rows');
+        session()->put('rows', $rows);
+        Debugbar::error('$rows = '. $rows . '. Сессия = ' . session('rows') . '. После записи в таблицу перед ридиректом.');
+
         return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'успешно создан.')->with ('rows', session('rows'));
     }
 
