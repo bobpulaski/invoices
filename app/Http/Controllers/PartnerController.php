@@ -17,12 +17,26 @@ class PartnerController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index (Request $request)
+
     {
-        $rows = request ('rows');
+
+        $rows = request('rows');
+
+
+        if (!session('rows') and !$rows) {
+            $rows = 10;
+            session()->put('rows', 10);
+
+            Debugbar::info($rows);
+            Debugbar::info('if (!session(\'rows\') and !$rows)');
+            //dd('if (!session(\'rows\') and !$rows)');
+        }
 
         if (!$rows) {
+            Debugbar::info($rows);
             $rows = session('rows');
         }
+
 
         if (!session('rows')) {
             session(['rows' => $rows]);
@@ -33,10 +47,9 @@ class PartnerController extends Controller
         }
 
 
-        //ddd($rows);
 
         $total = User::find (Auth::id ())->partners ()->count ();
-        $partners = User::find (Auth::id ())->partners ()->cursorPaginate (session('rows'));
+        $partners = User::find (Auth::id ())->partners ()->Paginate (session('rows'));
         //return View::make ('partners.index', compact ('partners'))->with ('total', $total);
         return view ('partners.index', compact ('partners'))->with ('total', $total)->with ('rows', session('rows'));
     }
@@ -69,18 +82,19 @@ class PartnerController extends Controller
      */
     public function store (Request $request)
     {
-
-
         $validated = $request->validate ([
             'name' => 'required', 'max:255',
             'inn' => 'required',
         ]);
+
+        $rows = session('rows');
 
         $Partner = new Partner;
         $Partner->user_id = Auth::id ();
         $Partner->name = $request->input ('name');
         $Partner->inn = $request->input ('inn');
         $Partner->save ();
+        session(['rows' => $rows]);
         return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'успешно создан.')->with ('rows', session('rows'));
     }
 

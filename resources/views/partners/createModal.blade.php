@@ -11,29 +11,28 @@
             @csrf
             @method('POST')
 
-            <h1 class="font-semibold text-3xl text-gray-700 mb-4">@yield('title')</h1>
+            <h4 class="font-semibold text-2xl text-gray-700 mb-4">Новый контрагент</h4>
 
             {{--Реквизиты--}}
             <div class="bg-gray-200 shadow-md rounded mb-6">
                 <x-h3>Реквизиты</x-h3>
-                <div class="grid grid-cols-6 gap-5 border p-6">
+                <div class="grid grid-cols-3 gap-5 border p-2">
 
                     <div class="flex flex-col text-sm col-span-2">
-
                         <x-input-label for="name" req="true">Полное наименование ЮЛ или ИП</x-input-label>
                         <x-my-input name="name" id="name"
                                     placeholder="Общество с ограниченной ответственностью «Ромашка»"></x-my-input>
                     </div>
 
                     <div class="flex flex-col text-sm">
-
                         <x-input-label for="sname" req="true">Краткое наименование</x-input-label>
                         <x-my-input name="sname" id="sname" placeholder="ООО «Ромашка»"></x-my-input>
-
                     </div>
+                </div>
+
+                <div class="grid grid-cols-5 gap-5 border p-2">
 
                     <div class="flex flex-col text-sm">
-
                         <x-input-label for="ogrn" req="false">ОГРН</x-input-label>
                         <x-my-input name="ogrn" id="ogrn" placeholder="1027739609391"></x-my-input>
                     </div>
@@ -46,6 +45,18 @@
                     <div class="flex flex-col text-sm">
                         <x-input-label for="kpp" req="false">КПП</x-input-label>
                         <x-my-input name="kpp" id="kpp" placeholder="773401001"></x-my-input>
+                    </div>
+
+                    <div class="flex flex-col text-sm">
+                        <x-input-label for="position" req="false">Должность руководителя</x-input-label>
+                        <x-my-input name="position" id="position"
+                                    placeholder="Генеральный директор"></x-my-input>
+                    </div>
+
+                    <div class="flex flex-col text-sm">
+                        <x-input-label for="fio" req="false">ФИО</x-input-label>
+                        <x-my-input name="fio" id="fio"
+                                    placeholder="Иванов А.И."></x-my-input>
                     </div>
 
                 </div>
@@ -63,17 +74,6 @@
                                     placeholder="119049 г. Москва, ул. Донская, д. 8 стр. 1"></x-my-input>
                     </div>
 
-                    <div class="flex flex-col text-sm">
-                        <x-input-label for="position" req="false">Должность руководителя</x-input-label>
-                        <x-my-input name="position" id="position"
-                                    placeholder="Генеральный директор"></x-my-input>
-                    </div>
-
-                    <div class="flex flex-col text-sm">
-                        <x-input-label for="fio" req="false">ФИО</x-input-label>
-                        <x-my-input name="fio" id="fio"
-                                    placeholder="Иванов А.И."></x-my-input>
-                    </div>
 
                     <div class="flex flex-col text-sm">
                         <x-input-label for="phone" req="phone">Телефон</x-input-label>
@@ -91,6 +91,12 @@
                         <x-input-label for="www" req="www">Сайт</x-input-label>
                         <x-my-input name="www" id="www"
                                     placeholder="sitename.ru"></x-my-input>
+                    </div>
+
+                    <div class="flex flex-col text-sm col-span-2">
+                        <x-input-label for="contact" req="false">Ответственное лицо</x-input-label>
+                        <x-my-input name="contact" id="contact"
+                                    placeholder="Мария Серова, +7-964-897-85-26"></x-my-input>
                     </div>
 
                 </div>
@@ -140,9 +146,9 @@
         </form>
 
         @if ($errors->any())
-                <script>
-                    $("#ex2").modal();
-                </script>
+            <script>
+                $("#ex2").modal();
+            </script>
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
