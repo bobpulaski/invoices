@@ -25,59 +25,62 @@
             <x-h1>{{ $title }}</x-h1>
         </div>
 
-            <a class="ml-2 text-sm" href="{{ route('partners.create') }}" title="Добавить контрагента">
-                <div class="flex flex-row border border-gray-400 transition duration-150 ease-in hover:border-gray-600 font-light py-2 px-4 rounded text-gray-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path
+        <a class="ml-2 text-sm" href="{{ route('partners.create') }}" title="Добавить контрагента">
+            <div class="flex flex-row border border-gray-400 transition duration-150 ease-in hover:border-gray-600 font-light py-2 px-4 rounded text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path
                             d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
-                    </svg>
-                </div>
-            </a>
-            {{--<a href="#ex2" rel="modal:open" class="ml-2 text-sm">Создать контрагента</a> //Модальное окно--}}
+                </svg>
+            </div>
+        </a>
+        {{--<a href="#ex2" rel="modal:open" class="ml-2 text-sm">Создать контрагента</a> //Модальное окно--}}
 
     </div>
 
     <table class="items-center bg-transparent w-full border-collapse shadow-lg">
         <thead class="bg-gray-200 rounded">
         <tr>
-            <th class="rounded-tl text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #ID
-            </th>
-            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #User_Id
-            </th>
-            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #Name
-            </th>
-            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs whitespace-nowrap font-semibold text-left">
-                #ИНН
-            </th>
-
-            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #Invoice
-            </th>
-
-            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #Edit
-            </th>
-            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
-                #Destroy
-            </th>
-
+            <x-th>name</x-th>
+            {{--<x-th>fullname</x-th>--}}
+            <x-th>inn</x-th>
+           {{-- <x-th>ogrn</x-th>
+            <x-th>kpp</x-th>--}}
+            <x-th>address</x-th>
+            <x-th>head_position</x-th>
+            <x-th>head_name</x-th>
+            <x-th>phone</x-th>
+            <x-th>email</x-th>
+            <x-th>site</x-th>
+            <x-th>Действие</x-th>
+            {{--<x-th>bankname</x-th>
+            <x-th>bik</x-th>
+            <x-th>bankaccount</x-th>--}}
         </tr>
         </thead>
+
         <tbody>
         @if (!empty($partners) && $partners->count())
             @foreach ($partners as $el)
                 <tr>
-                    <td class="text-right border-b px-1 align-middle border-r border-l text-xs whitespace-nowrap p-1">{{ $el->id }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->user_id }}</td>
-                    <td class="border-b px-1 align-middle border-l-0 border-r text-xs whitespace-nowrap p-1">{{ $el->name }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->inn }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r border-l text-xs whitespace-nowrap p-1">{{ $el->name }}</td>
+                    {{--<td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->fullname }}</td>--}}
+                    <td class="border-b px-1 align-middle border-l-0 border-r text-xs whitespace-nowrap p-1">{{ $el->inn }}</td>
+                   {{-- <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->ogrn }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->kpp }}</td>--}}
+                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->address }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->head_position }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->head_name }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->phone }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->email }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->site }}</td>
+{{--                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->bankname }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->bik }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->bankaccount }}</td>--}}
 
                     {{--<td><a href="confirmation/{{ $el->id }}">Удалить</a></td>--}}
 
-                    <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2">
+                    <td class="flex flex-row justify-between border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2">
+
                         <a href="{{ route('invoices.create.for.partners' , [$el->id]) }}"
                            title="Добавить счет этому контрагенту">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -87,29 +90,26 @@
                                       clip-rule="evenodd"/>
                             </svg>
                         </a>
-                    </td>
 
-                    <td class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2">
                         <a role="button" data-bs-toggle="" title="Редактировать"
                            href="{{ route('partners.edit' , [$el->id]) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 hover:text-green-700"
                                  viewBox="0 0 20 20" fill="currentColor">
                                 <path
-                                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"/>
+                                        d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"/>
                                 <path fill-rule="evenodd"
                                       d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
                                       clip-rule="evenodd"/>
                             </svg>
                         </a>
-                    </td>
 
-                    <td id='wrapper' class="border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2">
                         {{--<a href="{{ route('partners.delete.confirmation', [$el->id]) }}">Delete</a>--}}
-                        <?php
-                        $id = $el->id;
-                        $name = $el->name;
-                        ?>
-                        <a id="{{ $id }}" href="#ex1" rel="modal:open" class="jo" data-name="{{ $name }}" title="Удалить {{ $el->name }}">
+                        @php
+                            $id = $el->id;
+                            $name = $el->name;
+                        @endphp
+                        <a id="{{ $id }}" href="#ex1" rel="modal:open" class="jo" data-name="{{ $name }}"
+                           title="Удалить {{ $el->name }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-300 hover:text-red-700"
                                  viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd"
@@ -117,9 +117,8 @@
                                       clip-rule="evenodd"/>
                             </svg>
                         </a>
+
                     </td>
-
-
                 </tr>
             @endforeach
         @else

@@ -29,7 +29,7 @@ class CreatePartnersTable extends Migration
             $table->string('site', 100)->nullable();
             $table->string('bankname')->nullable();
             $table->integer('bik')->nullable();
-            $table->bigInteger('bankaccount')->nullable();
+            $table->string('bankaccount', 20)->nullable();
             $table->string('information')->nullable();
             $table->timestamps();
 
