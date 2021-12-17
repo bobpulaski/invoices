@@ -1,4 +1,4 @@
-<div class="flex flex-row-reverse p-4 shadow-md">
+<div class="flex flex-row-reverse p-4 shadow-md border-b-2 bg-soft-white">
     <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button type="submit" title="Выход"

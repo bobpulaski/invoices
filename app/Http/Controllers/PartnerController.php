@@ -21,38 +21,38 @@ class PartnerController extends Controller
     {
         $rows = request('rows');
 
-        if (!$rows AND !session('sessiont_rows')) {
-            session()->put('sessiont_rows', 15);            //Присваеваем значение по-умолчанию
+        if (!$rows AND !session('session_rows')) {
+            session()->put('session_rows', 15);            //Присваеваем значение по-умолчанию
         }
 
 
-        if (!$rows AND session('sessiont_rows')) {
-            session()->put('sessiont_rows', session('sessiont_rows'));  //Если пользователь сделал выбор, то сохраняем в сессию
+        if (!$rows AND session('session_rows')) {
+            session()->put('session_rows', session('session_rows'));  //Если пользователь сделал выбор, то сохраняем в сессию
         }
 
         if ($rows == 15) {
-            session()->put('sessiont_rows', 15);
+            session()->put('session_rows', 15);
         }
 
         if ($rows == 25) {
-            session()->put('sessiont_rows', 25);
+            session()->put('session_rows', 25);
         }
 
         if ($rows == 50) {
-            session()->put('sessiont_rows', 50);
+            session()->put('session_rows', 50);
         }
 
 
         //*****************************//
-            Debugbar::warning('$rows = '. $rows . '. Сессия = ' . session('sessiont_rows') . '. Итоговое состояние (4 правило).'); //4
+            Debugbar::warning('$rows = '. $rows . '. Сессия = ' . session('session_rows') . '. Итоговое состояние (4 правило).'); //4
         //********************************//
 
         $total = User::find (Auth::id ())->partners ()->count ();
-        $partners = User::find (Auth::id ())->partners ()->Paginate (session('sessiont_rows'));
+        $partners = User::find (Auth::id ())->partners ()->orderbyDesc('created_at')->Paginate (session('session_rows'));
         //return View::make ('partners.index', compact ('partners'))->with ('total', $total);
         return view ('partners.index', compact ('partners'))
             ->with ('total', $total)
-            ->with ('session_rows', session('sessiont_rows'));
+            ->with ('session_rows', session('session_rows'));
     }
 
 
@@ -84,8 +84,24 @@ class PartnerController extends Controller
     public function store (Request $request)
     {
         $validated = $request->validate ([
-            'name' => 'required', 'max:255',
-            'inn' => 'required',
+            'name' => 'required', 'max:100',
+            'fullname' => 'required', 'max:255',
+
+            'inn' => 'required', 'numeric', 'max:13',
+            'ogrn' => 'numeric', 'min:13', 'max:13',
+            'kpp' => 'numeric', 'max:13',
+
+            'address' => 'max:255',
+            'head_position' => 'max:50', 'alpha',
+            'head_name' => 'max:50', 'alpha_dash',
+            'phone' => 'max:30',
+            'email' => 'max:30', 'Email',
+            'site' => 'max:100', 'alpha_dash',
+
+            'bankname' => 'max:255',
+            'bik' => 'numeric', 'max:9',
+            'bankaccount' => 'numeric', 'max:20',
+            'information' => 'max:255',
         ]);
 
         $rows = session('rows');
@@ -93,14 +109,27 @@ class PartnerController extends Controller
         $Partner = new Partner;
         $Partner->user_id = Auth::id ();
         $Partner->name = $request->input ('name');
+        $Partner->fullname = $request->input ('fullname');
+
         $Partner->inn = $request->input ('inn');
+        $Partner->ogrn = $request->input ('ogrn');
+        $Partner->kpp = $request->input ('kpp');
+
+        $Partner->address = $request->input ('address');
+        $Partner->head_position = $request->input ('head_position');
+        $Partner->head_name = $request->input ('head_name');
+        $Partner->phone = $request->input ('phone');
+        $Partner->email = $request->input ('email');
+        $Partner->site = $request->input ('site');
+
+        $Partner->bankname = $request->input ('bankname');
+        $Partner->bik = $request->input ('bik');
+        $Partner->bankaccount = $request->input ('bankaccount');
+        $Partner->information = $request->input ('information');
+
         $Partner->save ();
 
-        $rows = session('rows');
-        session()->put('rows', $rows);
-        Debugbar::error('$rows = '. $rows . '. Сессия = ' . session('rows') . '. После записи в таблицу перед ридиректом.');
-
-        return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'успешно создан.')->with ('rows', session('rows'));
+        return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'успешно создан.');
     }
 
     /**

@@ -15,7 +15,7 @@
 
 <div class="flex flex-row h-screen">
 
-    <div id="LeftSide" class="w-64 flex-shrink-0 bg-gray-700">
+    <div id="LeftSide" class="w-64 flex-shrink-0 bg-gray-800">
         @include('templates.includes.leftside')
     </div>
 
@@ -29,11 +29,11 @@
             </div>
 
             {{--Main Content Area--}}
-            <div id="content" class="h-screen p-5 overflow-y-auto">
+            <div id="content" class="h-screen p-5 overflow-y-auto bg-soft-white">
                 @yield('content')
             </div>
 
-            <div id="footer" class="flex justify-end p-3 border-t">
+            <div id="footer" class="flex justify-end p-3 border-t bg-soft-white">
                 @if(isset($partners) and $partners != null)
                     <div>
                         <p class="text-xs text-gray-400">Записей {{ $partners->count() }} из {{ $total }}</p>

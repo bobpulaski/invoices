@@ -6,7 +6,16 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-/*.modal {
-    width: inherit !important;
-    max-width: 75% !important;
-}*/
+.bg-soft-white { background-color: #f3f1f1; }
+
+.bg-prussian-blue { background-color: #003652; }
+
+.bg-steel-blue { background-color: #3E80B6; }
+
+.bg-metallic-seaweed { background-color: #00798C;}
+.bg-metallic-seaweed-darker { background-color: #004752;}
+
+.bg-brik-red { background-color: #D1495B; }
+.bg-sunray { background-color: #EDAE49;}
+
+

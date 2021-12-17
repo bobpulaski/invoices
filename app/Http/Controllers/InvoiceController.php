@@ -68,7 +68,7 @@ class InvoiceController extends Controller
         }
     }
         public function create() {
-
+            dd('create');
     }
 
 

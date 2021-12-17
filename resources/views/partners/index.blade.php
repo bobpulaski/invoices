@@ -1,3 +1,5 @@
+{{--TODO Сортировка по умолчанию - задавать через настройки организации--}}
+
 @extends('templates.main')
 
 @php
@@ -13,8 +15,8 @@
 
 
     @if(session()->has('success'))
-        <div class="bg-green-700 p-3 mb-3 text-white">
-            <span class="font-medium">{{ session()->get('hisName') }}</span> {{ session()->get('success') }}
+        <div class="bg-cyan-700 p-3 mb-3 text-gray-100 rounded">
+            <span class="font-medium">Контрагент {{ session()->get('hisName') }}</span> {{ session()->get('success') }}
         </div>
     @endif
 
@@ -22,22 +24,23 @@
         <div class="relative w-full max-w-full flex-grow flex-1">
             <x-h1>{{ $title }}</x-h1>
         </div>
-        <div
-            class="flex flex-row bg-blue-500 hover:bg-blue-600 transition duration-150 ease-in text-white font-light py-2 px-4 rounded">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                    d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
-            </svg>
-            {{--<a class="ml-2 text-sm" href={{ route('partners.create') }}>Создать контрагента</a>--}}
-            <a href="#ex2" rel="modal:open" class="ml-2 text-sm">Создать контрагента</a>
-            {{--TODO Палец на всю кнопку должен смотреть--}}
-        </div>
+
+            <a class="ml-2 text-sm" href="{{ route('partners.create') }}" title="Добавить контрагента">
+                <div class="flex flex-row border border-gray-400 transition duration-150 ease-in hover:border-gray-600 font-light py-2 px-4 rounded text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
+                    </svg>
+                </div>
+            </a>
+            {{--<a href="#ex2" rel="modal:open" class="ml-2 text-sm">Создать контрагента</a> //Модальное окно--}}
+
     </div>
 
     <table class="items-center bg-transparent w-full border-collapse shadow-lg">
-        <thead class="bg-gray-200">
+        <thead class="bg-gray-200 rounded">
         <tr>
-            <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
+            <th class="rounded-tl text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
                 #ID
             </th>
             <th class="text-center px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase whitespace-nowrap font-semibold text-left">
