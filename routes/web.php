@@ -69,3 +69,4 @@ Route::put('invoices/{id}', 'App\Http\Controllers\InvoiceController@update')
 Route::delete('invoices/{id}', 'App\Http\Controllers\InvoiceController@destroy')
     ->middleware(['auth'])
     ->name('invoices.destroy');
+
