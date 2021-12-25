@@ -22,6 +22,11 @@ class User extends Authenticatable
         return $this->hasMany(Invoice::class);
     }
 
+    public function companies()
+    {
+        return $this->hasMany(Company::class, 'partner_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

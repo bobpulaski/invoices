@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePartnersTable extends Migration
+class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePartnersTable extends Migration
      */
     public function up()
     {
-        Schema::create('partners', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->UnsignedBigInteger('user_id');
 
@@ -31,6 +31,8 @@ class CreatePartnersTable extends Migration
             $table->string('site', 100)->nullable();
             $table->string('head_position', 50)->nullable();
             $table->string('head_name', 30)->nullable();
+            $table->string('accountant_position', 50)->nullable();
+            $table->string('accountant_name', 30)->nullable();
 
             $table->string('bank_name');
             $table->string('bank_bik', 9);
@@ -52,6 +54,6 @@ class CreatePartnersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partners');
+        Schema::dropIfExists('companies');
     }
 }

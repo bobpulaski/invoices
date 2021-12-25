@@ -40,11 +40,9 @@
     <table class="items-center bg-transparent w-full border-collapse shadow-lg">
         <thead class="bg-gray-200 rounded">
         <tr>
+            <x-th class="text-right">user_id</x-th>
             <x-th>name</x-th>
-            {{--<x-th>fullname</x-th>--}}
             <x-th>inn</x-th>
-           {{-- <x-th>ogrn</x-th>
-            <x-th>kpp</x-th>--}}
             <x-th>address</x-th>
             <x-th>head_position</x-th>
             <x-th>head_name</x-th>
@@ -52,9 +50,6 @@
             <x-th>email</x-th>
             <x-th>site</x-th>
             <x-th>Действие</x-th>
-            {{--<x-th>bankname</x-th>
-            <x-th>bik</x-th>
-            <x-th>bankaccount</x-th>--}}
         </tr>
         </thead>
 
@@ -62,25 +57,16 @@
         @if (!empty($partners) && $partners->count())
             @foreach ($partners as $el)
                 <tr>
-                    <td class="text-right border-b px-1 align-middle border-r border-l text-xs whitespace-nowrap p-1">{{ $el->name }}</td>
-                    {{--<td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->fullname }}</td>--}}
-                    <td class="border-b px-1 align-middle border-l-0 border-r text-xs whitespace-nowrap p-1">{{ $el->inn }}</td>
-                   {{-- <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->ogrn }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->kpp }}</td>--}}
+                    <td class="text-right border-b px-1 border-r border-l text-xs whitespace-nowrap p-1">{{ $el->user_id }}</td>
+                    <td class="text-left border-b px-1 border-r border-l text-xs whitespace-nowrap p-1">{{ $el->name }}</td>
+                    <td class="text-right border-b px-1 border-l-0 border-r text-xs whitespace-nowrap p-1">{{ $el->inn }}</td>
                     <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->address }}</td>
                     <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->head_position }}</td>
                     <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->head_name }}</td>
                     <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->phone }}</td>
                     <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->email }}</td>
                     <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->site }}</td>
-{{--                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->bankname }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->bik }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->bankaccount }}</td>--}}
-
-                    {{--<td><a href="confirmation/{{ $el->id }}">Удалить</a></td>--}}
-
                     <td class="flex flex-row justify-between border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2">
-
                         <a href="{{ route('invoices.create.for.partners' , [$el->id]) }}"
                            title="Добавить счет этому контрагенту">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -147,6 +133,8 @@
             document.getElementById('rows').value = {{ $session_rows }};
         });
     </script>
+
+    {{--TODO Дергается выпадающий список с записями на страницу--}}
 
     @include('partners.createModal')
     @include('partners.deleteModal')

@@ -88,43 +88,49 @@ class PartnerController extends Controller
             'fullname' => 'required', 'max:255',
 
             'inn' => 'required', 'numeric', 'max:13',
-            'ogrn' => 'numeric', 'min:13', 'max:13',
             'kpp' => 'numeric', 'max:13',
+            'ogrn' => 'numeric', 'min:13', 'max:13',
+            'account' => 'required', 'numeric', 'min:20', 'max:20',
 
             'address' => 'max:255',
+            'email' => 'max:30', 'email',
+            'phone' => 'max:30',
+            'site' => 'max:100', 'alpha_dash',
             'head_position' => 'max:50', 'alpha',
             'head_name' => 'max:50', 'alpha_dash',
-            'phone' => 'max:30',
-            'email' => 'max:30', 'Email',
-            'site' => 'max:100', 'alpha_dash',
 
-            'bankname' => 'max:255',
-            'bik' => 'numeric', 'max:9',
-            'bankaccount' => 'numeric', 'max:20',
+            'bankname' => 'required', 'max:255',
+            'bankbik' => 'required', 'numeric', 'max:9',
+            'korr' => 'required', 'numeric', 'max:20',
+
             'information' => 'max:255',
         ]);
 
-        $rows = session('rows');
+   /*     $rows = session('rows');*/
 
         $Partner = new Partner;
         $Partner->user_id = Auth::id ();
+
         $Partner->name = $request->input ('name');
         $Partner->fullname = $request->input ('fullname');
 
         $Partner->inn = $request->input ('inn');
-        $Partner->ogrn = $request->input ('ogrn');
         $Partner->kpp = $request->input ('kpp');
+        $Partner->ogrn = $request->input ('ogrn');
+        $Partner->account = $request->input ('account');
+
 
         $Partner->address = $request->input ('address');
+        $Partner->email = $request->input ('email');
+        $Partner->phone = $request->input ('phone');
+        $Partner->site = $request->input ('site');
         $Partner->head_position = $request->input ('head_position');
         $Partner->head_name = $request->input ('head_name');
-        $Partner->phone = $request->input ('phone');
-        $Partner->email = $request->input ('email');
-        $Partner->site = $request->input ('site');
 
-        $Partner->bankname = $request->input ('bankname');
-        $Partner->bik = $request->input ('bik');
-        $Partner->bankaccount = $request->input ('bankaccount');
+        $Partner->bank_name = $request->input ('bankname');
+        $Partner->bank_bik = $request->input ('bankbik');
+        $Partner->bank_account = $request->input ('korr');
+
         $Partner->information = $request->input ('information');
 
         $Partner->save ();

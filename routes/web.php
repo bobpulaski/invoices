@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PartnerController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\InvoiceController;
@@ -34,11 +35,13 @@ require __DIR__.'/auth.php';
 
 Route::resource('partners', PartnerController::class)->middleware(['auth']);
 
-Route::get('partners/{id}/confirmation', 'App\Http\Controllers\PartnerController@destroyConfirmation')
-    ->name('partners.delete.confirmation');
+    Route::get('partners/{id}/confirmation', 'App\Http\Controllers\PartnerController@destroyConfirmation')
+        ->name('partners.delete.confirmation');
 
-Route::get('perpage', 'App\Http\Controllers\PartnerController@indexPerpage')
-    ->name('partners.perpage');
+    Route::get('perpage', 'App\Http\Controllers\PartnerController@indexPerpage')
+        ->name('partners.perpage');
+
+Route::resource('companies', CompanyController::class)->middleware(['auth']);
 
 
 //Route::resource('invoices', InvoiceController::class)->middleware(['auth']);
