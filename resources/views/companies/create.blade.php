@@ -1,7 +1,7 @@
 @extends('templates.main')
 
 @php
-    $title = 'Добавить контрагента';
+    $title = 'Добавить компанию';
 @endphp
 
 @section('title')
@@ -16,25 +16,24 @@
         </div>
     @endif
 
-    <form action="{{ route('partners.store') }}" method="post">
+    <form action="{{ route('companies.store') }}" method="post">
         @csrf
         @method('POST')
 
         <h1 class="font-semibold text-3xl text-gray-700 mb-4">@yield('title')</h1>
 
-        {{--Реквизиты--}}
         <div class="bg-gray-200 shadow-md rounded mb-6">
             <x-h3>Реквизиты</x-h3>
             <div class="grid grid-cols-6 gap-5 border p-6">
 
                 <div class="flex flex-col text-sm col-span-2">
-                    <x-input-label for="fullname" req="true">Полное наименование</x-input-label>
+                    <x-input-label for="fullname" req="true">Полное наименование ЮЛ или ИП</x-input-label>
                     <x-my-input name="fullname" id="fullname"
                                 placeholder="Общество с ограниченной ответственностью «Ромашка»"></x-my-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-input-label for="name" req="true">Наименование ЮЛ или ИП</x-input-label>
+                    <x-input-label for="name" req="true">Краткое наименование</x-input-label>
                     <x-my-input name="name" id="name" placeholder="ООО «Ромашка»"></x-my-input>
                 </div>
 
@@ -103,68 +102,6 @@
             </div>
         </div>
 
-        {{--Банковские реквизиты--}}
-        <div class="bg-gray-200 shadow-md rounded mb-6">
-            <x-h3>Банковские реквизиты</x-h3>
-
-            <div class="grid grid-cols-7 gap-5 border p-6">
-
-                <div class="flex flex-col col-span-2 text-sm">
-                    <x-input-label for="bankname" req="true">Наименование банка</x-input-label>
-                    <x-my-input name="bankname" id="bankname"
-                                placeholder="ПАО Банк «ФК Открытие»"></x-my-input>
-                </div>
-
-                <div class="flex flex-col text-sm">
-                    <x-input-label for="bankbik" req="true">БИК</x-input-label>
-                    <x-my-input name="bankbik" id="bankbik"
-                                placeholder="044525297"></x-my-input>
-                </div>
-
-                <div class="flex flex-col text-sm">
-                    <x-input-label for="korr" req="true">Корреспондентский счёт</x-input-label>
-                    <x-my-input name="korr" id="korr"
-                                placeholder="30101810945250000297"></x-my-input>
-                </div>
-
-                <div class="flex flex-col text-sm">
-                    <x-input-label for="account" req="true">Расчетный счёт</x-input-label>
-                    <x-my-input name="account" id="account"
-                                placeholder="40702810500000000001"></x-my-input>
-                </div>
-
-                <div class="flex flex-col col-span-2 text-sm">
-                    <x-input-label for="information" req="false">Дополнительная информация</x-input-label>
-                    <x-my-input name="information" id="information"
-                                placeholder="..."></x-my-input>
-                </div>
-
-                {{--TODO Исправить кривые названия для input и в контроллере - это сделано для Facke Fill--}}
-
-            </div>
-        </div>
-
-        {{--Кнопки--}}
-
-
-        <div class="grid grid-cols-6 gap-3">
-            <x-simple-button type="submit" bg="bg-green-700" hover="bg-green-900">Сохранить</x-simple-button>
-            <x-link-button href="{{ route('partners.index') }}" type="secondary">Отмена</x-link-button>
-        </div>
-
-        {{--</div>--}}
-
     </form>
-
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
 @endsection
