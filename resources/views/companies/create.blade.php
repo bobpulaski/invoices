@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-input-label for="ogrn" req="false">ОГРН</x-input-label>
+                    <x-input-label for="ogrn" req="false">ОГРН/ОГРНИП</x-input-label>
                     <x-my-input name="ogrn" id="ogrn" placeholder="1027739609391"></x-my-input>
                 </div>
 
@@ -160,5 +160,15 @@
 
 
     </form>
+
+    {{--@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif--}}
 
 @endsection

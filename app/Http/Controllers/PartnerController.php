@@ -84,8 +84,8 @@ class PartnerController extends Controller
     public function store (Request $request)
     {
         $validated = $request->validate ([
-            'name' => 'required', 'max:100',
-            'fullname' => 'required', 'max:255',
+            'name' => ['required', 'max:100'],
+            'fullname' => ['required', 'max:255'],
 
             'inn' => 'required', 'numeric', 'max:13',
             'kpp' => 'numeric', 'max:13',
@@ -135,7 +135,7 @@ class PartnerController extends Controller
 
         $Partner->save ();
 
-        return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'успешно создан.');
+        return redirect ('partners')->with ('hisName', $Partner->name)->with ('success', 'успешно добавлен.');
     }
 
     /**

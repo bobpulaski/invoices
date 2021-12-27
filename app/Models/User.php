@@ -24,7 +24,7 @@ class User extends Authenticatable
 
     public function companies()
     {
-        return $this->hasMany(Company::class, 'partner_id');
+        return $this->hasMany(Company::class);
     }
 
     /**

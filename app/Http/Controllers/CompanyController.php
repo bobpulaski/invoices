@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Libraries\CompanyMethodы;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Company;
 
 class CompanyController extends Controller
 {
@@ -11,9 +15,11 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index ()
     {
-        return view ('companies.index');
+        $companies = User::find (Auth::id ())->companies ()->orderbyDesc('created_at')->Paginate (15);
+        //return View::make ('partners.index', compact ('partners'))->with ('total', $total);
+        return view ('companies.index', compact ('companies'));
     }
 
     /**
@@ -21,7 +27,7 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create ()
     {
         return view ('companies.create');
     }
@@ -29,21 +35,54 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store (Request $request)
     {
-        dd('store');
+
+
+        (new \App\Libraries\CompanyMethodы)->MyValidate ($request);
+
+        $Company = new Company;
+        $Company->user_id = Auth::id ();
+
+        $Company->fullname = $request->input ('fullname');
+        $Company->name = $request->input ('name');
+
+        $Company->inn = $request->input ('inn');
+        $Company->kpp = $request->input ('kpp');
+        $Company->ogrn = $request->input ('ogrn');
+
+        $Company->address = $request->input ('address');
+        $Company->email = $request->input ('email');
+        $Company->phone = $request->input ('phone');
+        $Company->site = $request->input ('site');
+        $Company->head_position = $request->input ('head_position');
+        $Company->head_name = $request->input ('head_name');
+        $Company->accountant_position = $request->input ('accountant_position');
+        $Company->accountant_name = $request->input ('accountant_name');
+
+        $Company->bank_name = $request->input ('bank_name');
+        $Company->bank_bik = $request->input ('bank_bik');
+        $Company->bank_account = $request->input ('bank_account');
+        $Company->account = $request->input ('account');
+
+        $Company->information = $request->input ('information');
+
+        $Company->save ();
+
+
+        return redirect ('companies')->with ('hisName', $Company->name)->with ('success', 'успешно добавлена.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show ($id)
     {
         //
     }
@@ -51,10 +90,10 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit ($id)
     {
         //
     }
@@ -62,11 +101,11 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update (Request $request, $id)
     {
         //
     }
@@ -74,10 +113,10 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy ($id)
     {
         //
     }

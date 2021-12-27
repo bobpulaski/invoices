@@ -20,9 +20,9 @@ class CreateCompaniesTable extends Migration
             $table->string('name', 100);
             $table->string('fullname');
 
-            $table->string('inn', 13);
+            $table->string('inn', 12);
             $table->string('kpp', 9)->nullable();
-            $table->string('ogrn', 13)->nullable();
+            $table->string('ogrn', 15)->nullable();
             $table->string('account', 20);
 
             $table->string('address')->nullable();

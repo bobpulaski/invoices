@@ -16,7 +16,7 @@
 
     @if(session()->has('success'))
         <div class="bg-cyan-700 p-3 mb-3 text-gray-100 rounded">
-            <span class="font-medium">Контрагент {{ session()->get('hisName') }}</span> {{ session()->get('success') }}
+            <span class="font-medium">Контрагент <strong>{{ session()->get('hisName') }}</strong></span> {{ session()->get('success') }}
         </div>
     @endif
 
