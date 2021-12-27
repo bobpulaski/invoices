@@ -22,6 +22,7 @@
 
         <h1 class="font-semibold text-3xl text-gray-700 mb-4">@yield('title')</h1>
 
+        {{--Реквизиты--}}
         <div class="bg-gray-200 shadow-md rounded mb-6">
             <x-h3>Реквизиты</x-h3>
             <div class="grid grid-cols-6 gap-5 border p-6">
@@ -98,9 +99,65 @@
                                 placeholder="Иванов А.И."></x-my-input>
                 </div>
 
+                <div class="flex flex-col text-sm">
+                    <x-input-label for="accountant_position" req="false">Должность бугалтера</x-input-label>
+                    <x-my-input name="accountant_position" id="accountant_position"
+                                placeholder="Главный бухгалтер"></x-my-input>
+                </div>
+
+                <div class="flex flex-col text-sm">
+                    <x-input-label for="accountant_name" req="false">ФИО бухгалтера</x-input-label>
+                    <x-my-input name="accountant_name" id="accountant_name"
+                                placeholder="Петрова Е.В."></x-my-input>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-200 shadow-md rounded mb-6">
+            <x-h3>Банковские реквизиты</x-h3>
+
+            <div class="grid grid-cols-7 gap-5 border p-6">
+
+                <div class="flex flex-col col-span-2 text-sm">
+                    <x-input-label for="bank_name" req="true">Наименование банка</x-input-label>
+                    <x-my-input name="bank_name" id="bank_name"
+                                placeholder="ПАО Банк «ФК Открытие»"></x-my-input>
+                </div>
+
+                <div class="flex flex-col text-sm">
+                    <x-input-label for="bank_bik" req="true">БИК</x-input-label>
+                    <x-my-input name="bank_bik" id="bank_bik"
+                                placeholder="044525297"></x-my-input>
+                </div>
+
+                <div class="flex flex-col text-sm">
+                    <x-input-label for="bank_account" req="true">Корреспондентский счёт</x-input-label>
+                    <x-my-input name="bank_account" id="bank_account"
+                                placeholder="30101810945250000297"></x-my-input>
+                </div>
+
+                <div class="flex flex-col text-sm">
+                    <x-input-label for="account" req="true">Расчетный счёт</x-input-label>
+                    <x-my-input name="account" id="account"
+                                placeholder="40702810500000000001"></x-my-input>
+                </div>
+
+                <div class="flex flex-col col-span-2 text-sm">
+                    <x-input-label for="information" req="false">Дополнительная информация</x-input-label>
+                    <x-my-input name="information" id="information"
+                                placeholder="..."></x-my-input>
+                </div>
 
             </div>
         </div>
+
+        {{--Кнопки--}}
+
+        <div class="grid grid-cols-6 gap-3">
+            <x-simple-button type="submit" bg="bg-green-700" hover="bg-green-900">Сохранить</x-simple-button>
+            <x-link-button href="{{ route('companies.index') }}" type="secondary">Отмена</x-link-button>
+        </div>
+
 
     </form>
 

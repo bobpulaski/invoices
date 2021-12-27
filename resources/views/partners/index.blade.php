@@ -20,9 +20,10 @@
         </div>
     @endif
 
-    <div class="flex flex-row mt-3 mb-3">
+    <div class="flex flex-row mt-3 mb-3 items-end">
         <div class="relative w-full max-w-full flex-grow flex-1">
             <x-h1>{{ $title }}</x-h1>
+            <p class="text-gray-600 text-xs py-2">Список всех организаций, ИП и физических лиц</p>
         </div>
 
         <a class="ml-2 text-sm" href="{{ route('partners.create') }}" title="Добавить контрагента">
@@ -34,7 +35,6 @@
             </div>
         </a>
         {{--<a href="#ex2" rel="modal:open" class="ml-2 text-sm">Создать контрагента</a> //Модальное окно--}}
-
     </div>
 
     <table class="items-center bg-transparent w-full border-collapse shadow-lg">

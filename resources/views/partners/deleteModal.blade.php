@@ -25,8 +25,8 @@
 
                 <div class="flex justify-end pb-3 space-x-5">
                     <a href="#" rel="modal:close"
-                       class="bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded mt-3">Отмена</a>
-                    <button type="submit" class="bg-red-300 hover:bg-red-800 text-white py-2 px-4 rounded mt-3 ml-3">Удалить</button>
+                       class="bg-gray-500 hover:bg-gray-600 text-gray-200 py-2 px-4 rounded mt-3">Отмена</a>
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-gray-200 py-2 px-4 rounded mt-3 ml-3">Удалить</button>
                 </div>
             </form>
 
