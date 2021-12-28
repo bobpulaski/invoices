@@ -89,7 +89,7 @@
 
                 <div class="flex flex-col text-sm">
                     <x-input-label for="head_position" req="false">Должность руководителя</x-input-label>
-                    <x-my-input name="head_position" id="head_position"
+                    <x-my-input name="head_position" id="headposition"
                                 placeholder="Генеральный директор"></x-my-input>
                 </div>
 
@@ -100,8 +100,8 @@
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-input-label for="accountant_position" req="false">Должность бугалтера</x-input-label>
-                    <x-my-input name="accountant_position" id="accountant_position"
+                    <x-input-label for="accountant_position" req="false" class="">Должность бугалтера</x-input-label>
+                    <x-my-input name="accountant_position" id="accountantposition"
                                 placeholder="Главный бухгалтер"></x-my-input>
                 </div>
 
@@ -119,14 +119,14 @@
             <div class="grid grid-cols-7 gap-5 border p-6">
 
                 <div class="flex flex-col col-span-2 text-sm">
-                    <x-input-label for="bank_name" req="true">Наименование банка</x-input-label>
-                    <x-my-input name="bank_name" id="bank_name"
+                    <x-input-label for="bank_name" req="true">Наименование банка получателя</x-input-label>
+                    <x-my-input name="bank_name" id="bankname"
                                 placeholder="ПАО Банк «ФК Открытие»"></x-my-input>
                 </div>
 
                 <div class="flex flex-col text-sm">
                     <x-input-label for="bank_bik" req="true">БИК</x-input-label>
-                    <x-my-input name="bank_bik" id="bank_bik"
+                    <x-my-input name="bank_bik" id="bankbik"
                                 placeholder="044525297"></x-my-input>
                 </div>
 
