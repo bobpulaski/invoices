@@ -14,6 +14,9 @@
 
 
 
+
+
+
     @if(session()->has('success'))
         <div class="bg-cyan-700 p-3 mb-3 text-gray-100 rounded">
             <span class="font-medium">Контрагент <strong>{{ session()->get('hisName') }}</strong></span> {{ session()->get('success') }}
@@ -26,6 +29,12 @@
             <p class="text-gray-600 text-xs py-2">Список всех организаций, ИП и физических лиц</p>
         </div>
 
+            <div id="myTable_filter">
+                <label>Поиск:
+                    <input id="searchbox" type="search" class="" placeholder="" aria-controls="myTable">
+                </label>
+            </div>
+
         <a class="ml-2 text-sm" href="{{ route('partners.create') }}" title="Добавить контрагента">
             <div class="flex flex-row border border-gray-400 transition duration-150 ease-in hover:border-gray-600 font-light py-2 px-4 rounded text-gray-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -37,10 +46,11 @@
         {{--<a href="#ex2" rel="modal:open" class="ml-2 text-sm">Создать контрагента</a> //Модальное окно--}}
     </div>
 
-    <table class="items-center bg-transparent w-full border-collapse shadow-lg">
+
+    <table id="myTable" class="items-center bg-transparent w-full border-collapse shadow-lg">
         <thead class="bg-gray-200 rounded">
         <tr>
-            <x-th class="text-right">user_id</x-th>
+            <x-th>user_id</x-th>
             <x-th>name</x-th>
             <x-th>inn</x-th>
             <x-th>address</x-th>
@@ -79,7 +89,8 @@
 
                         <a role="button" data-bs-toggle="" title="Редактировать"
                            href="{{ route('partners.edit' , [$el->id]) }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 hover:text-green-700"
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="h-5 w-5 text-green-500 hover:text-green-700"
                                  viewBox="0 0 20 20" fill="currentColor">
                                 <path
                                         d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"/>
@@ -128,13 +139,52 @@
     <link rel="stylesheet" href="{{ asset ('css/jquery.modal.css') }}"/>
 
 
+
+
     <script>
         $(document).ready(function () {
             document.getElementById('rows').value = {{ $session_rows }};
         });
     </script>
 
+
+
     {{--TODO Дергается выпадающий список с записями на страницу--}}
+
+
+    {{--<link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>--}}
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.11.3/cr-1.5.5/datatables.min.css"/>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/cr-1.5.5/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable(
+                {
+                    "paging": false,
+                    "info": false,
+                    "searching": true,
+                    colReorder: true,
+                    stateSave: true,
+                }
+            );
+
+        });
+
+        $(document).ready(function () {
+            var dataTable = $('#myTable').dataTable();
+            $("#searchbox").keyup(function () {
+                dataTable.fnFilter(this.value);
+            });
+        });
+    </script>
+
+
+
+
 
     @include('partners.createModal')
     @include('partners.deleteModal')
