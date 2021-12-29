@@ -155,7 +155,32 @@
     {{--<link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>--}}
 
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.11.3/cr-1.5.5/datatables.min.css"/>
 
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/cr-1.5.5/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable(
+                {
+                    "paging": false,
+                    "info": false,
+                    "searching": true,
+                    colReorder: true,
+                    stateSave: true,
+                }
+            );
+
+        });
+
+        $(document).ready(function () {
+            var dataTable = $('#myTable').dataTable();
+            $("#searchbox").keyup(function () {
+                dataTable.fnFilter(this.value);
+            });
+        });
+    </script>
 
 
 
