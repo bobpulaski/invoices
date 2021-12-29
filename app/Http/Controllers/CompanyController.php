@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Libraries\CompanyMethodы;
+use App\Libraries\CompanyMethods;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Company;
 
@@ -42,7 +42,7 @@ class CompanyController extends Controller
     {
 
 
-        (new \App\Libraries\CompanyMethodы)->MyValidate ($request);
+        (new \App\Libraries\CompanyMethods)->MyValidate ($request);
 
         $Company = new Company;
         $Company->user_id = Auth::id ();

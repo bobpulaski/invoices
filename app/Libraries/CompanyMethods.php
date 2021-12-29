@@ -2,7 +2,7 @@
 
 namespace App\Libraries;
 
-class CompanyMethodы
+class CompanyMethods
 {
     public function MyValidate ($request)
     {
@@ -13,7 +13,7 @@ class CompanyMethodы
 
             'inn' => ['required', 'digits_between:10,12'],
             'kpp' => ['nullable', 'digits:9'],
-            'ogrn' => ['nullable', 'digits:13'],
+            'ogrn' => ['nullable', 'digits_between:13,15'],
 
             'address' => ['nullable', 'max:255'],
             'email' => ['nullable', 'email', 'max:255'],
@@ -56,13 +56,13 @@ class CompanyMethodы
                 'bank_name.required' => 'Наименование не указано',
 
                 'bank_bik.required' => 'БИК не указан',
-                'bank_bik.digits' => 'Содержить 9 цифр',
+                'bank_bik.digits' => 'Содержит 9 цифр',
 
                 'bank_account.required' => 'Счет не указан',
-                'bank_account.digits' => 'Содержить 20 цифр',
+                'bank_account.digits' => 'Содержит 20 цифр',
 
                 'account.required' => 'Счет не указан',
-                'account.digits' => 'Содержить 20 цифр',
+                'account.digits' => 'Содержит 20 цифр',
 
                 'information.max' => 'Не более 255 символов',
             ]);

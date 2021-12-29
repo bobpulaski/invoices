@@ -12,9 +12,14 @@
 
     @if(session()->has('success'))
         <div class="bg-cyan-700 p-3 mb-3 text-gray-100 rounded">
-            <span class="font-medium">Организация <strong>{{ session()->get('hisName') }}</strong></span> {{ session()->get('success') }}
+            <span
+                class="font-medium">Организация <strong>{{ session()->get('hisName') }}</strong></span> {{ session()->get('success') }}
         </div>
     @endif
+
+
+
+
 
     <div class="flex flex-row mt-3 mb-3 items-end">
         <div class="relative w-full max-w-full flex-grow flex-1">
@@ -24,7 +29,7 @@
 
         <a class="ml-2 text-sm" href="{{ route('companies.create') }}" title="Добавить компанию">
             <div
-                    class="flex flex-row border border-gray-400 transition duration-150 ease-in hover:border-gray-600 font-light py-2 px-4 rounded text-gray-500">
+                class="flex flex-row border border-gray-400 transition duration-150 ease-in hover:border-gray-600 font-light py-2 px-4 rounded text-gray-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -34,7 +39,7 @@
         </a>
     </div>
 
-    <table class="items-center bg-transparent w-full border-collapse shadow-lg">
+    <table class="items-center bg-transparent border-collapse shadow-lg">
         <thead class="bg-gray-200 rounded">
         <tr>
             <x-th>user_id</x-th>
@@ -47,6 +52,7 @@
             <x-th>phone</x-th>
             <x-th>email</x-th>
             <x-th>site</x-th>
+            <x-th>site</x-th>
             <x-th>Действие</x-th>
         </tr>
         </thead>
@@ -54,11 +60,18 @@
         @if (!empty($companies) && $companies->count())
             @foreach ($companies as $el)
                 <tr>
-                    <td class="text-right border-b px-1 border-r border-l text-xs whitespace-nowrap p-1">{{ $el->user_id }}</td>
-                    <td class="text-right border-b px-1 border-r border-l text-xs whitespace-nowrap p-1">{{ $el->name }}</td>
-                    <td class="text-right border-b px-1 border-r border-l text-xs whitespace-nowrap p-1">{{ $el->inn }}</td>
-                    <td class="text-right border-b px-1 border-r border-l text-xs whitespace-nowrap p-1">{{ $el->kpp }}</td>
-                    <td class="text-right border-b px-1 border-r border-l text-xs whitespace-nowrap p-1">{{ $el->address }}</td>
+                    <span style="width:10px">
+                        <x-td>{{ $el->user_id }}</x-td>
+                    </span>
+                    <x-td>{{ $el->name }}</x-td>
+                    <x-td>{{ $el->inn }}</x-td>
+                    <x-td>{{ $el->kpp }}</x-td>
+                    <x-td>{{ $el->address }}</x-td>
+                    <x-td>{{ $el->head_position }}</x-td>
+                    <x-td>{{ $el->head_name }}</x-td>
+                    <x-td>{{ $el->phone }}</x-td>
+                    <x-td>{{ $el->email }}</x-td>
+                    <x-td>{{ $el->site }}</x-td>
                 </tr>
             @endforeach
         @else
@@ -71,4 +84,6 @@
 
 
 @endsection
+
+
 

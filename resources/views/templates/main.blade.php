@@ -48,5 +48,13 @@
 </div>
 
 @livewireScripts
+
+<script src="{{ asset('js/resizable.js') }}"></script>
+
+<script>
+    var table = document.getElementsByTagName('table')[0];
+    resizableGrid(table);
+</script>
+
 </body>
 </html>
