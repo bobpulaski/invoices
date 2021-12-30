@@ -19,7 +19,8 @@
 
     @if(session()->has('success'))
         <div class="bg-cyan-700 p-3 mb-3 text-gray-100 rounded">
-            <span class="font-medium">Контрагент <strong>{{ session()->get('hisName') }}</strong></span> {{ session()->get('success') }}
+            <span
+                class="font-medium">Контрагент <strong>{{ session()->get('hisName') }}</strong></span> {{ session()->get('success') }}
         </div>
     @endif
 
@@ -29,17 +30,18 @@
             <p class="text-gray-600 text-xs py-2">Список всех организаций, ИП и физических лиц</p>
         </div>
 
-            <div id="myTable_filter">
-                <label>Поиск:
-                    <input id="searchbox" type="search" class="" placeholder="" aria-controls="myTable">
-                </label>
-            </div>
+        <div id="myTable_filter">
+            <label>Поиск:
+                <input id="searchbox" type="search" class="" placeholder="" aria-controls="myTable">
+            </label>
+        </div>
 
         <a class="ml-2 text-sm" href="{{ route('partners.create') }}" title="Добавить контрагента">
-            <div class="flex flex-row border border-gray-400 transition duration-150 ease-in hover:border-gray-600 font-light py-2 px-4 rounded text-gray-500">
+            <div
+                class="flex flex-row border border-gray-400 transition duration-150 ease-in hover:border-gray-600 font-light py-2 px-4 rounded text-gray-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path
-                            d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
+                        d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
                 </svg>
             </div>
         </a>
@@ -67,16 +69,16 @@
         @if (!empty($partners) && $partners->count())
             @foreach ($partners as $el)
                 <tr>
-                    <td class="text-right border-b px-1 border-r border-l text-xs whitespace-nowrap p-1">{{ $el->user_id }}</td>
-                    <td class="text-left border-b px-1 border-r border-l text-xs whitespace-nowrap p-1">{{ $el->name }}</td>
-                    <td class="text-right border-b px-1 border-l-0 border-r text-xs whitespace-nowrap p-1">{{ $el->inn }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->address }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->head_position }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->head_name }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->phone }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->email }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs whitespace-nowrap p-1">{{ $el->site }}</td>
-                    <td class="flex flex-row justify-between border-b px-6 align-middle border-r text-xs whitespace-nowrap p-2">
+                    <td class="text-right border-b px-1 border-r border-l text-xs p-1">{{ $el->user_id }}</td>
+                    <td class="text-left border-b px-1 border-r border-l text-xs p-1">{{ $el->name }}</td>
+                    <td class="text-right border-b px-1 border-l-0 border-r text-xs p-1">{{ $el->inn }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->address }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->head_position }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->head_name }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->phone }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->email }}</td>
+                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->site }}</td>
+                    <td class="flex flex-row justify-between border-b px-6 align-middle border-r text-xs p-2">
                         <a href="{{ route('invoices.create.for.partners' , [$el->id]) }}"
                            title="Добавить счет этому контрагенту">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -93,7 +95,7 @@
                                  class="h-5 w-5 text-green-500 hover:text-green-700"
                                  viewBox="0 0 20 20" fill="currentColor">
                                 <path
-                                        d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"/>
+                                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"/>
                                 <path fill-rule="evenodd"
                                       d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
                                       clip-rule="evenodd"/>
@@ -148,6 +150,14 @@
     </script>
 
 
+    <div>
+        Toggle column: <a class="toggle-vis" data-column="0">name</a> - <a class="toggle-vis" data-column="1">Position</a> -
+        <a
+            class="toggle-vis" data-column="2">Office</a> - <a class="toggle-vis" data-column="3">Age</a> - <a
+            class="toggle-vis" data-column="4">Start date</a> - <a class="toggle-vis" data-column="5">Salary</a>
+    </div>
+
+
 
     {{--TODO Дергается выпадающий список с записями на страницу--}}
 
@@ -160,24 +170,33 @@
 
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/cr-1.5.5/datatables.min.js"></script>
 
+
     <script>
         $(document).ready(function () {
-            $('#myTable').DataTable(
-                {
-                    "paging": false,
-                    "info": false,
-                    "searching": true,
-                    colReorder: true,
-                    stateSave: true,
-                }
-            );
-
+            $('#myTable').DataTable({
+                "paging": false,
+                "info": false,
+                "searching": true,
+                colReorder: true,
+                stateSave: true,
+            });
         });
+
 
         $(document).ready(function () {
             var dataTable = $('#myTable').dataTable();
             $("#searchbox").keyup(function () {
                 dataTable.fnFilter(this.value);
+            });
+
+            $('a.toggle-vis').on('click', function (e) {
+                e.preventDefault();
+
+                // Get the column API object
+                let column = dataTable.column($(this).attr('data-column'));
+
+                // Toggle the visibility
+                column.visible(!column.visible());
             });
         });
     </script>
