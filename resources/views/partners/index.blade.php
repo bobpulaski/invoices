@@ -49,16 +49,17 @@
     </div>
 
 
-    <table id="myTable" class="items-center bg-transparent w-full border-collapse shadow-lg">
+    <table id="myTable" class="w-full border-collapse shadow-lg">
         <thead class="bg-gray-200 rounded">
         <tr>
-            <x-th>user_id</x-th>
+            <x-th class="text-right">user_id</x-th>
+            <x-th class="text-right">id</x-th>
             <x-th>name</x-th>
-            <x-th>inn</x-th>
-            <x-th>address</x-th>
+            <x-th class="text-right">inn</x-th>
+            {{--<x-th>address</x-th>--}}
             <x-th>head_position</x-th>
             <x-th>head_name</x-th>
-            <x-th>phone</x-th>
+            <x-th class="text-right">phone</x-th>
             <x-th>email</x-th>
             <x-th>site</x-th>
             <x-th>Действие</x-th>
@@ -69,19 +70,21 @@
         @if (!empty($partners) && $partners->count())
             @foreach ($partners as $el)
                 <tr>
-                    <td class="text-right border-b px-1 border-r border-l text-xs p-1">{{ $el->user_id }}</td>
-                    <td class="text-left border-b px-1 border-r border-l text-xs p-1">{{ $el->name }}</td>
-                    <td class="text-right border-b px-1 border-l-0 border-r text-xs p-1">{{ $el->inn }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->address }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->head_position }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->head_name }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->phone }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->email }}</td>
-                    <td class="text-right border-b px-1 align-middle border-r text-xs p-1">{{ $el->site }}</td>
-                    <td class="flex flex-row justify-between border-b px-6 align-middle border-r text-xs p-2">
+                    <x-td class="text-right">{{ $el->user_id }}</x-td>
+                    <x-td class="text-right">{{ $el->id }}</x-td>
+                    <x-td>{{ $el->name }}</x-td>
+                    <x-td class="text-right">{{ $el->inn }}</x-td>
+                    {{--<x-td>{{ $el->address }}</x-td>--}}
+                    <x-td>{{ $el->head_position }}</x-td>
+                    <x-td>{{ $el->head_name }}</x-td>
+                    <x-td class="text-right">{{ $el->phone }}</x-td>
+                    <x-td>{{ $el->email }}</x-td>
+                    <x-td>{{ $el->site }}</x-td>
+                    <x-td class="flex flex-row">
                         <a href="{{ route('invoices.create.for.partners' , [$el->id]) }}"
                            title="Добавить счет этому контрагенту">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                 viewBox="0 0 20 20"
                                  fill="currentColor">
                                 <path fill-rule="evenodd"
                                       d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z"
@@ -107,9 +110,11 @@
                             $id = $el->id;
                             $name = $el->name;
                         @endphp
-                        <a id="{{ $id }}" href="#ex1" rel="modal:open" class="jo" data-name="{{ $name }}"
+                        <a id="{{ $id }}" href="#ex1" rel="modal:open" class="jo"
+                           data-name="{{ $name }}"
                            title="Удалить {{ $el->name }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-300 hover:text-red-700"
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="h-5 w-5 text-red-300 hover:text-red-700"
                                  viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd"
                                       d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm1 8a1 1 0 100 2h6a1 1 0 100-2H7z"
@@ -117,7 +122,7 @@
                             </svg>
                         </a>
 
-                    </td>
+                    </x-td>
                 </tr>
             @endforeach
         @else
@@ -150,26 +155,16 @@
     </script>
 
 
-    <div>
-        Toggle column: <a class="toggle-vis" data-column="0">name</a> - <a class="toggle-vis" data-column="1">Position</a> -
-        <a
-            class="toggle-vis" data-column="2">Office</a> - <a class="toggle-vis" data-column="3">Age</a> - <a
-            class="toggle-vis" data-column="4">Start date</a> - <a class="toggle-vis" data-column="5">Salary</a>
-    </div>
-
-
-
     {{--TODO Дергается выпадающий список с записями на страницу--}}
 
 
     {{--<link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>--}}
 
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.datatables.net/v/dt/dt-1.11.3/cr-1.5.5/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bm/dt-1.11.3/cr-1.5.5/r-2.2.9/sr-1.1.0/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bm/dt-1.11.3/cr-1.5.5/r-2.2.9/sr-1.1.0/datatables.min.js"></script>
 
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/cr-1.5.5/datatables.min.js"></script>
-
+    {{--TODO Подключить все скрипты локально--}}
 
     <script>
         $(document).ready(function () {
@@ -177,8 +172,11 @@
                 "paging": false,
                 "info": false,
                 "searching": true,
-                colReorder: true,
-                stateSave: true,
+                "colReorder": true,
+                "colReorder.realtime": false,
+                "stateSave": true,
+                "bAutoWidth": false,
+                "autoWidth": true,
             });
         });
 
@@ -189,15 +187,16 @@
                 dataTable.fnFilter(this.value);
             });
 
-            $('a.toggle-vis').on('click', function (e) {
-                e.preventDefault();
 
-                // Get the column API object
-                let column = dataTable.column($(this).attr('data-column'));
+            /*            $('a.toggle-vis').on('click', function (e) {
+                            e.preventDefault();
 
-                // Toggle the visibility
-                column.visible(!column.visible());
-            });
+                            // Get the column API object
+                            let column = dataTable.column($(this).attr('data-column'));
+
+                            // Toggle the visibility
+                            column.visible(!column.visible());
+                        });*/
         });
     </script>
 

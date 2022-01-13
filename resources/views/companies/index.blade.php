@@ -17,10 +17,6 @@
         </div>
     @endif
 
-
-
-
-
     <div class="flex flex-row mt-3 mb-3 items-end">
         <div class="relative w-full max-w-full flex-grow flex-1">
             <x-h1>{{ $title }}</x-h1>
@@ -60,9 +56,7 @@
         @if (!empty($companies) && $companies->count())
             @foreach ($companies as $el)
                 <tr>
-                    <span style="width:10px">
-                        <x-td>{{ $el->user_id }}</x-td>
-                    </span>
+                    <x-td>{{ $el->user_id }}</x-td>
                     <x-td>{{ $el->name }}</x-td>
                     <x-td>{{ $el->inn }}</x-td>
                     <x-td>{{ $el->kpp }}</x-td>
@@ -81,8 +75,6 @@
         @endif
         </tbody>
     </table>
-
-
 @endsection
 
 
