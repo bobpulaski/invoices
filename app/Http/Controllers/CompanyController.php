@@ -118,6 +118,15 @@ class CompanyController extends Controller
      */
     public function destroy ($id)
     {
-        //
+        $company = Company::find ($id)->where ('user_id', Auth::id ())->find ($id);
+        //dd($company);
+
+        if ($company === NULL or !$company) {
+            return 'Fuck Off';
+        } else {
+            Company::destroy ($id);
+            return redirect ('companies')->with ('hisName', $company->name)->with ('success', 'удалена.');
+        }
+
     }
 }

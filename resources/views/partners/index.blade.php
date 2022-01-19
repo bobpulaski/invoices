@@ -13,10 +13,6 @@
 @section('content')
 
 
-
-
-
-
     @if(session()->has('success'))
         <div class="bg-cyan-700 p-3 mb-3 text-gray-100 rounded">
             <span
@@ -157,10 +153,6 @@
 
     {{--TODO Дергается выпадающий список с записями на страницу--}}
 
-
-    {{--<link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>--}}
-
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bm/dt-1.11.3/cr-1.5.5/r-2.2.9/sr-1.1.0/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bm/dt-1.11.3/cr-1.5.5/r-2.2.9/sr-1.1.0/datatables.min.js"></script>
 
@@ -201,10 +193,6 @@
     </script>
 
 
-
-
-
-    @include('partners.createModal')
     @include('partners.deleteModal')
 
 
