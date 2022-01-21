@@ -50,6 +50,7 @@
         <tr>
             <x-th class="text-right">user_id</x-th>
             <x-th class="text-right">id</x-th>
+            <x-th>fullname</x-th>
             <x-th>name</x-th>
             <x-th class="text-right">inn</x-th>
             {{--<x-th>address</x-th>--}}
@@ -68,6 +69,7 @@
                 <tr>
                     <x-td class="text-right">{{ $el->user_id }}</x-td>
                     <x-td class="text-right">{{ $el->id }}</x-td>
+                    <x-td>{{ $el->fullname }}</x-td>
                     <x-td>{{ $el->name }}</x-td>
                     <x-td class="text-right">{{ $el->inn }}</x-td>
                     {{--<x-td>{{ $el->address }}</x-td>--}}

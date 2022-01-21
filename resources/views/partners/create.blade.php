@@ -20,7 +20,8 @@
         @csrf
         @method('POST')
 
-        <h1 class="font-semibold text-3xl text-gray-700 mb-4">@yield('title')</h1>
+        <x-h1>@yield('title')</x-h1>
+        <p class="text-gray-600 text-xs py-2">Создание новой организации или ИП</p>
 
         {{--Реквизиты--}}
         <div class="bg-gray-200 shadow-md rounded mb-6">
@@ -34,7 +35,7 @@
                 </div>
 
                 <div class="flex flex-col text-sm">
-                    <x-input-label for="name" req="true">Наименование ЮЛ или ИП</x-input-label>
+                    <x-input-label for="name" req="true">Краткое наименование</x-input-label>
                     <x-my-input name="name" id="name" placeholder="ООО «Ромашка»"></x-my-input>
                 </div>
 

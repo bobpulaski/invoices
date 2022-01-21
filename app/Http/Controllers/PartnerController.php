@@ -84,8 +84,9 @@ class PartnerController extends Controller
     public function store (Request $request)
     {
         $validated = $request->validate ([
-            'name' => ['required', 'max:100'],
+
             'fullname' => ['required', 'max:255'],
+            'name' => ['required', 'max:100'],
 
             'inn' => 'required', 'numeric', 'max:13',
             'kpp' => 'numeric', 'max:13',
@@ -157,7 +158,9 @@ class PartnerController extends Controller
      */
     public function edit ($id)
     {
-        $currentRecord = Partner::where ('id', $id)->get ();
+        /*TODO Проверить при прямой подстановке*/
+
+        $currentRecord = Partner::where ('id', $id)->get();
         return view ('partners.edit', compact ('currentRecord'));
     }
 
@@ -172,8 +175,20 @@ class PartnerController extends Controller
     {
         $Partner = Partner::find ($id);
         if ($request->isMethod ('PUT')) {
+
+            $Partner->fullname = $request->input ('fullname');
             $Partner->name = $request->input ('name');
             $Partner->inn = $request->input ('inn');
+            $Partner->kpp = $request->input ('kpp');
+            $Partner->ogrn = $request->input ('ogrn');
+
+            $Partner->address = $request->input ('address');
+            $Partner->email = $request->input ('email');
+            $Partner->phone = $request->input ('phone');
+            $Partner->site = $request->input ('site');
+            $Partner->head_position = $request->input ('head_position');
+            $Partner->head_name = $request->input ('head_name');
+
             $Partner->save ();
         }
         return redirect ('partners');
